@@ -32,11 +32,21 @@ Perhaps a little code snippet.
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 CONSTRUCTOR
+
+=head3 new
+
+Creta new object.
 
 =cut
 
-sub function1 {
+sub new {
+    my $class = shift;
+
+    my $self;
+    bless $self, ref( $class ) || $class;
+
+    return $self;
 }
 
 =head2 function2
