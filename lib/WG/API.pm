@@ -1,6 +1,6 @@
 package WG::API;
 
-use 5.006;
+use 5.014;
 use strict;
 use warnings;
 
@@ -27,11 +27,6 @@ Perhaps a little code snippet.
 
     my $foo = WG::API->new();
     ...
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
 
 =head1 SUBROUTINES/METHODS
 
