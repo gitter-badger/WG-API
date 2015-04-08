@@ -3,6 +3,8 @@ package WG::API;
 use 5.014;
 use strict;
 use warnings;
+use WG::API::Error;
+use JSON;
 
 =head1 NAME
 
