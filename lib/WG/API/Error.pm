@@ -25,23 +25,74 @@ Perhaps a little code snippet.
 
     use WG::API::Error;
 
-    my $foo = WG::API::Error->new();
+    my $wg_error = WG::API::Error->new();
     ...
+    say $wg_error->code;
 
 =head1 SUBROUTINES/METHODS
 
-=head2 function1
+=head2 CONSTRUCTOR
+
+=head3 new
+
+Create new error object.
 
 =cut
 
-sub function1 {
+sub new {
+    my $class = shift;
+    
+    my $self;
+    bless $self, ref( $class ) || $class;
+
+    $self->_parse( @_ );
+
+    return $self;
 }
 
-=head2 function2
+=head2 METHODS
+
+=head3 code
+
+Return error code.
 
 =cut
 
-sub function2 {
+sub code { shift->{ 'code' } }
+
+=head3 message
+
+Return error message.
+
+=cut
+
+sub message { shift->{ 'message' } }
+
+=head3 field
+
+Return error field.
+
+=cut
+
+sub field { shift->{ 'field' } }
+
+=head3 value
+
+Return error value.
+
+=cut
+
+sub value { shift->{ 'value' } }
+
+sub _parse {
+    my ( $self, $response ) = @_;
+
+   $self->{ 'code' }    = $response->{ 'code' };
+   $self->{ 'message' } = $response->{ 'message' };
+   $self->{ 'field' }   = $response->{ 'field' };
+   $self->{ 'value' }   = $response->{ 'value' };
+
+   return;
 }
 
 =head1 AUTHOR
@@ -63,32 +114,9 @@ You can find documentation for this module with the perldoc command.
 
     perldoc WG::API::Error
 
+=head1 SEE ALSO
 
-You can also look for information at:
-
-=over 4
-
-=item * RT: CPAN's request tracker (report bugs here)
-
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API-Error>
-
-=item * AnnoCPAN: Annotated CPAN documentation
-
-L<http://annocpan.org/dist/WG-API-Error>
-
-=item * CPAN Ratings
-
-L<http://cpanratings.perl.org/d/WG-API-Error>
-
-=item * Search CPAN
-
-L<http://search.cpan.org/dist/WG-API-Error/>
-
-=back
-
-
-=head1 ACKNOWLEDGEMENTS
-
+    perldoc WG::API
 
 =head1 LICENSE AND COPYRIGHT
 
