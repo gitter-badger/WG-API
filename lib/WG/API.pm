@@ -4,6 +4,7 @@ use 5.014;
 use strict;
 use warnings;
 use WG::API::Error;
+use LWP;
 use JSON;
 
 =head1 NAME
@@ -41,9 +42,13 @@ Creta new object.
 =cut
 
 sub new {
-    my $class = shift;
+    my $class   = shift;
 
-    my $self;
+    my $self = {};
+    %{ $self } = @_;
+    $self->{ 'ua' }  = LWP::UserAgent->new();
+    $self->{ 'lang' } = 'ru' unless defined $self->{ 'lang' };
+    
     bless $self, ref( $class ) || $class;
 
     return $self;
