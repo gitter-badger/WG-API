@@ -58,7 +58,33 @@ sub new {
 
 =cut
 
-sub function2 {
+sub _get {
+    my ( $self, %param ) = @_;
+
+    my $url = sprintf 'https://%s/%s/?application_id=%s',
+            $self->{ 'api_uri' },
+            $param{ 'uri' },
+            $self->{ 'application_id' },
+    ;
+    for ( qw/access_token account_id fields language expires_at/ ) {
+        $url .= sprintf "&%s=%s", $_, $param{ $_ } if $param{ $_ }; 
+    }
+
+    my $response = $self->{ 'ua' }->get( $url );
+    return decode_json $response->decoded_content;
+}
+
+sub _post {
+    my ( $self, %param ) = @_;
+
+    my $url = sprintf 'https://%s/%s/', 
+        $self->{ 'api_uri' },
+        $param{ 'uri' };
+
+    $param{ 'application_id' } = $self->{ 'application_id' };
+
+    my $response = $self->{ 'ua' }->post( $url, \%param );
+    return decode_json $response->decoded_content;
 }
 
 =head1 AUTHOR
