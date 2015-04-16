@@ -66,7 +66,7 @@ sub _get {
             $param{ 'uri' },
             $self->{ 'application_id' },
     ;
-    for ( qw/access_token account_id fields language expires_at/ ) {
+    for ( qw/access_token account_id fields language expires_at search/ ) {
         $url .= sprintf "&%s=%s", $_, $param{ $_ } if $param{ $_ }; 
     }
 
