@@ -92,7 +92,7 @@ sub _post {
 
 sub _parse {
     my ( $self, $response ) = @_;
-    warn Dumper $response if $self->{ 'debug' };
+    warn $response if $self->{ 'debug' };
     return $response;
 }
 
