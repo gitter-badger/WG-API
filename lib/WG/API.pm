@@ -6,6 +6,7 @@ use warnings;
 use WG::API::Error;
 use LWP;
 use JSON;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -70,8 +71,9 @@ sub _get {
         $url .= sprintf "&%s=%s", $_, $param{ $_ } if $param{ $_ }; 
     }
 
-    my $response = $self->{ 'ua' }->get( $url );
-    return decode_json $response->decoded_content;
+    warn $url if $self->{ 'debug' };
+    my $response = decode_json $self->{ 'ua' }->get( $url )->decoded_content;
+    return $self->_parse( $response );
 }
 
 sub _post {
@@ -83,8 +85,15 @@ sub _post {
 
     $param{ 'application_id' } = $self->{ 'application_id' };
 
-    my $response = $self->{ 'ua' }->post( $url, \%param );
-    return decode_json $response->decoded_content;
+    warn $url if $self->{ 'debug' };
+    my $response = decode_json $self->{ 'ua' }->post( $url, \%param )->decoded_content;
+    return $self->_parse( $response );
+}
+
+sub _parse {
+    my ( $self, $response ) = @_;
+    warn Dumper $response if $self->{ 'debug' };
+    return $response;
 }
 
 =head1 AUTHOR
