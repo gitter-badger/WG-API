@@ -3,6 +3,7 @@ package WG::API::Error;
 use 5.014;
 use strict;
 use warnings;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -42,11 +43,13 @@ Create new error object.
 sub new {
     my $class = shift;
     
-    my $self;
+    my $self = {};
     bless $self, ref( $class ) || $class;
+    $self->{ 'debug' } = 1;
 
     $self->_parse( @_ );
 
+    warn Dumper $self if $self->{ 'debug' };
     return $self;
 }
 
