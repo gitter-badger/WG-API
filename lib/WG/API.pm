@@ -55,9 +55,44 @@ sub new {
     return $self;
 }
 
-=head2 function2
+=head2 Methods
+
+=head3 clans_list
+
+Return clans list
 
 =cut
+
+sub clans_list {
+    my ( $self, %params ) = @_;
+
+    my $clans_list = $self->_get(
+        uri => 'clans/list',
+        params  => %params,
+    );
+
+    return $clans_list;
+}
+
+=head3 status
+
+=cut
+
+sub status { shift->{ 'status' } }
+
+=head3 response
+
+=cut
+
+sub response { shift->{ 'response' } }
+
+=head3 error
+
+Return WG::API::Error object
+
+=cut
+
+sub error { shift->{ 'error' } }
 
 sub _get {
     my ( $self, %param ) = @_;
@@ -72,10 +107,9 @@ sub _get {
     }
 
     warn $url if $self->{ 'debug' };
-    my $response = decode_json $self->{ 'ua' }->get( $url )->decoded_content;
-    return $self->_parse( $response );
+    $self->_parse( decode_json $self->{ 'ua' }->get( $url )->decoded_content );
+    return $self->status;
 }
-
 sub _post {
     my ( $self, %param ) = @_;
 
@@ -86,14 +120,34 @@ sub _post {
     $param{ 'application_id' } = $self->{ 'application_id' };
 
     warn $url if $self->{ 'debug' };
-    my $response = decode_json $self->{ 'ua' }->post( $url, \%param )->decoded_content;
-    return $self->_parse( $response );
+    $self->_parse( decode_json $self->{ 'ua' }->post( $url, \%param )->decoded_content );
+    return $self->status;
 }
 
 sub _parse {
     my ( $self, $response ) = @_;
+
     warn Dumper $response if $self->{ 'debug' };
-    return $response;
+
+    $self->{ 'status' } = $response->{ 'status' };
+
+    if ( $self->status eq 'error' ) {
+        $self->{ 'error' } = WG::API::Error->new(
+            $response->{ 'error' },
+        );
+    } elsif ( $self->status eq 'ok' ) {
+        $self->{ 'response' } = $response->{ 'data' };
+    } else {
+        $self->{ 'status' } = 'unknow';
+        $self->{ 'response' } = $response;
+
+        warn sprintf "unknow status %s\n", $response->{ 'status' };
+        warn "---- DEBUG ----\n";
+        warn Dumper $response;
+        warn "---- DEBUG ----\n";
+    }
+
+    return;
 }
 
 =head1 AUTHOR
