@@ -29,4 +29,18 @@ ok( $wg->login( { redirect_uri => 'api.worldoftanks.ru/wot/blank/',
 ok( $wg->status eq 'ok',                            'check status' );
 ok( $wg->response,                                  'check response' );
 ok( ! $wg->error,                                   'check error' );
+ok( ! $wg->login( 'blank' ),                        'login with invalid redirect_uri' );
+ok( $wg->error,                                     'check error' );
+my $wgn = $wg->new( { 
+            application_id  => 'demo1',
+            lang            => 'ru',
+            api_uri         => 'api.worldoftanks.ru/wgn',
+            debug           => '1',
+        } );
+ok( $wgn,                                           'create class with all params from ref' );
+ok( $wgn->clans_list,                               'get clans list without access_token' );
+ok( ! $wgn->response,                               'get response' );
+ok( $wgn->status eq 'error',                        'status eq error' );
+ok( $wgn->error,                                    'get error object' );
+
 done_testing();
