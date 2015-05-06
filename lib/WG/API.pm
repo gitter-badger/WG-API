@@ -52,8 +52,9 @@ sub new {
 
         my $self = $params;
 
-        $self->{ 'ua' }  = LWP::UserAgent->new();
-        $self->{ 'lang' } = 'ru' unless defined $self->{ 'lang' };
+        $self->{ 'ua' }         = LWP::UserAgent->new();
+        $self->{ 'lang' }       = 'ru' unless defined $self->{ 'lang' };
+        $self->{ 'api_uri' }    = 'api.worldoftanks.ru/wgn' unless defined $self->{ 'api_uri' };
 
         bless $self, ref( $class ) || $class;
 
