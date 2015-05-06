@@ -18,8 +18,8 @@ WriteMakefile(
         'Test::More' => 0,
     },
     PREREQ_PM => {
-        JSON                => 2.90,
-        LWP                 => 6.13,
+        JSON                => 2.61,
+        LWP                 => 6.08,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'WG-API-*' },
