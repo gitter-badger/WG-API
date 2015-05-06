@@ -20,6 +20,7 @@ WriteMakefile(
     PREREQ_PM => {
         JSON                => 2.61,
         LWP                 => 6.08,
+        Readonly            => 2.00,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'WG-API-*' },
