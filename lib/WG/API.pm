@@ -233,6 +233,7 @@ L<http://search.cpan.org/dist/WG-API/>
 
 =head1 ACKNOWLEDGEMENTS
 
+=cut
 
 =head1 LICENSE AND COPYRIGHT
 
