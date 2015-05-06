@@ -3,6 +3,7 @@ package WG::API;
 use 5.014;
 use strict;
 use warnings;
+use lib ('./lib');
 use WG::API::Error;
 use LWP;
 use JSON;
