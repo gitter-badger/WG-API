@@ -45,7 +45,6 @@ sub new {
     
     my $self = {};
     bless $self, ref( $class ) || $class;
-    $self->{ 'debug' } = 1;
 
     $self->_parse( @_ );
 
