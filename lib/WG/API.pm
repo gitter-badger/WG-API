@@ -187,21 +187,15 @@ sub _parse {
     warn Dumper $response if $self->{ 'debug' };
 
     $self->{ 'status' } = $response->{ 'status' };
+    delete $self->{ 'error' };
+    delete $self->{ 'response' };
 
     if ( $self->status eq 'error' ) {
         $self->{ 'error' } = WG::API::Error->new(
             $response->{ 'error' },
         );
-    } elsif ( $self->status eq 'ok' ) {
-        $self->{ 'response' } = $response->{ 'data' };
     } else {
-        $self->{ 'status' } = 'unknow';
-        $self->{ 'response' } = $response;
-
-        warn sprintf "unknow status %s\n", $response->{ 'status' };
-        warn "---- DEBUG ----\n";
-        warn Dumper $response;
-        warn "---- DEBUG ----\n";
+        $self->{ 'response' } = $response->{ 'data' };
     }
 
     return;
