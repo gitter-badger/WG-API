@@ -34,7 +34,7 @@ Perhaps a little code snippet.
     my $foo = WG::API->new();
     ...
 
-=head1 SUBROUTINES/METHODS
+=head1 METHODS
 
 =head2 CONSTRUCTOR
 
@@ -112,6 +112,7 @@ sub _get {
     $self->_parse( decode_json $self->{ 'ua' }->get( $url )->decoded_content );
     return $self->status;
 }
+
 sub _post {
     my ( $self, %param ) = @_;
 
