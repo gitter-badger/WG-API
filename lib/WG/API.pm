@@ -154,7 +154,7 @@ sub _get {
     my ( $self, %param ) = @_;
 
     my $url = sprintf 'https://%s/%s/?application_id=%s',
-            $self->{ 'api_uri' },
+            $param{ 'api_uri' } ? $param{ 'api_uri' } : $self->{ 'api_uri' },
             $param{ 'uri' },
             $self->{ 'application_id' },
     ;
@@ -171,7 +171,7 @@ sub _post {
     my ( $self, %param ) = @_;
 
     my $url = sprintf 'https://%s/%s/', 
-        $self->{ 'api_uri' },
+        $param{ 'api_uri' } ? $param{ 'api_uri' } : $self->{ 'api_uri' },
         $param{ 'uri' };
 
     $param{ 'application_id' } = $self->{ 'application_id' };
