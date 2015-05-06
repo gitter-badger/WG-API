@@ -70,9 +70,27 @@ sub new {
 =cut
 
 sub login { 
-    my ( $self, $redirect_uri ) = @_;
-    my $response = $self->_post( uri => 'auth/login', redirect_uri => $redirect_uri, nofollow => 1 ); 
-    return $self;
+    my ( $self, $params ) = @_;
+
+    my ( $redirect_uri, $expires_at );
+    if ( ref $params eq 'HASH' && $params->{ 'redirect_uri' } ) {
+        $redirect_uri = $params->{ 'redirect_uri' };
+        $expires_at   = $params->{ 'expires_at' } || $fortnight;
+    } 
+    elsif ( ! ref $params ) {
+        $redirect_uri = $params;
+        $expires_at   = $fortnight;
+    }
+
+    my $response = $self->_post( 
+        api_uri     => 'api.worldoftanks.ru/wot',
+        uri         => 'auth/login', 
+        redirect_uri    => $redirect_uri, 
+        expires_at      => $expires_at,
+        nofollow        => 1,
+    ) if $redirect_uri;
+
+    return $response && $response eq 'ok' ? '1' : '0';
 }  
 
 =head3 prolongate
