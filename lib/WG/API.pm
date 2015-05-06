@@ -118,7 +118,7 @@ sub clans_list {
 
     my $clans_list = $self->_get(
         uri => 'clans/list',
-        params  => %params,
+        %params,
     );
 
     return $clans_list;
