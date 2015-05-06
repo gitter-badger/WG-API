@@ -45,14 +45,15 @@ Creta new object.
 =cut
 
 sub new {
-    my $class   = shift;
+    my ( $class, $params )  = @_;
 
-    my $self = {};
-    %{ $self } = @_;
-    if ( $self->{ 'application_id' } ) {
+    if ( ref $params eq 'HASH' && $params->{ 'application_id' } ) {
+
+        my $self = $params;
+
         $self->{ 'ua' }  = LWP::UserAgent->new();
         $self->{ 'lang' } = 'ru' unless defined $self->{ 'lang' };
-    
+
         bless $self, ref( $class ) || $class;
 
         return $self;
