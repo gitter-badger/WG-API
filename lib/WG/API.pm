@@ -100,13 +100,19 @@ sub clans_list {
     return $clans_list;
 }
 
+=head2 INTERNAL DATA
+
 =head3 status
+
+Return request status
 
 =cut
 
 sub status { shift->{ 'status' } }
 
 =head3 response
+
+Return response
 
 =cut
 
