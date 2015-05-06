@@ -57,7 +57,31 @@ sub new {
     return $self;
 }
 
-=head2 Methods
+=head2 AUTH
+
+=head3 login
+
+=cut
+
+sub login { 
+    my ( $self, $redirect_uri ) = @_;
+    my $response = $self->_post( uri => 'auth/login', redirect_uri => $redirect_uri, nofollow => 1 ); 
+    return $self;
+}  
+
+=head3 prolongate
+
+=cut
+
+sub prolongate { $_[0]->_post( uri => 'auth/prolongate', access_token => $_[0]->{ 'access_token' }, expires_at => $_[1] ? $_[1] : $fortnight ) }
+
+=head3 logout
+
+=cut
+
+sub logout { $_[0]->_post( uri => 'auth/logout', access_token => $_[0]->{ 'access_token' } ) }
+
+=head2 CLANS 
 
 =head3 clans_list
 
