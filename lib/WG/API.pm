@@ -49,12 +49,15 @@ sub new {
 
     my $self = {};
     %{ $self } = @_;
-    $self->{ 'ua' }  = LWP::UserAgent->new();
-    $self->{ 'lang' } = 'ru' unless defined $self->{ 'lang' };
+    if ( $self->{ 'application_id' } ) {
+        $self->{ 'ua' }  = LWP::UserAgent->new();
+        $self->{ 'lang' } = 'ru' unless defined $self->{ 'lang' };
     
-    bless $self, ref( $class ) || $class;
+        bless $self, ref( $class ) || $class;
 
-    return $self;
+        return $self;
+    }
+    return;
 }
 
 =head2 AUTH
