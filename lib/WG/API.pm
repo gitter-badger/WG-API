@@ -7,6 +7,7 @@ use WG::API::Error;
 use LWP;
 use JSON;
 use Data::Dumper;
+use Readonly;
 
 =head1 NAME
 
@@ -20,6 +21,7 @@ Version 0.01
 
 our $VERSION = '0.01';
 
+Readonly::Scalar my $fortnight => '1209600';    #two weeks
 
 =head1 SYNOPSIS
 
