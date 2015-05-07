@@ -169,7 +169,9 @@ sub _get {
     }
 
     warn $url if $self->{ 'debug' };
-    $self->_parse( decode_json $self->{ 'ua' }->get( $url )->decoded_content );
+
+    my $response = $self->{ 'ua' }->get( $url, $param ); 
+    $self->_parse( $response->is_success ? decode_json $response->decoded_content : undef );
     return;
 }
 
@@ -183,7 +185,9 @@ sub _post {
     $param->{ 'application_id' } = $self->{ 'application_id' };
 
     warn $url if $self->{ 'debug' };
-    $self->_parse( decode_json $self->{ 'ua' }->post( $url, $param )->decoded_content );
+
+    my $response = $self->{ 'ua' }->post( $url, $param ); 
+    $self->_parse( $response->is_success ? decode_json $response->decoded_content : undef );
     return;
 }
 
@@ -191,6 +195,18 @@ sub _parse {
     my ( $self, $response ) = @_;
 
     warn Dumper $response if $self->{ 'debug' };
+
+    if ( ! $response ) { 
+        $response = {
+            status => 'error',
+            error  => {
+                code    => '999',
+                message => 'invalid api_uri',
+                field   => 'xxx',
+                value   => 'xxx',
+            },
+        };
+    }
 
     $self->{ 'status' } = $response->{ 'status' };
     delete $self->{ 'error' };

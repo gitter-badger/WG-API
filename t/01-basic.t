@@ -39,5 +39,8 @@ my $wgn = $wg->new( {
             debug           => '1',
         } );
 ok( $wgn,                                           'create class with all params from ref' );
+ok( ! $wgn->clans_list( { 
+            'api_uri' => 'test.ru',
+        } ),                                        'get clans list from invalid url' );
 
 done_testing();
