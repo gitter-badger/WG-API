@@ -114,14 +114,20 @@ Return clans list
 =cut
 
 sub clans_list {
-    my ( $self, %params ) = @_;
+    my ( $self, $params ) = @_;
 
-    my $clans_list = $self->_get(
-        uri => 'clans/list',
-        %params,
-    );
+    if ( $params && ref $params eq 'HASH' ) {
+        $self->_get( { 
+            uri => 'clans/list',
+            %$params,
+        } );
+    } else {
+        $self->_get( { 
+            uri => 'clans/list'
+        } );
+    }
 
-    return $clans_list;
+    return $self->status && $self->status eq 'ok' ? '1' : '0';
 }
 
 =head2 INTERNAL DATA
