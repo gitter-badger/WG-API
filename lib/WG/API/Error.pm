@@ -3,7 +3,6 @@ package WG::API::Error;
 use 5.014;
 use strict;
 use warnings;
-use Data::Dumper;
 
 =head1 NAME
 
@@ -48,7 +47,6 @@ sub new {
 
     $self->_parse( @_ );
 
-    warn Dumper $self if $self->{ 'debug' };
     return $self;
 }
 
