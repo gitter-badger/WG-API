@@ -154,37 +154,37 @@ Return WG::API::Error object
 
 =cut
 
-sub error { shift->{ 'error' } }
+sub error { shift->{ 'error' } || WG::API::Error->new( ) }
 
 sub _get {
-    my ( $self, %param ) = @_;
+    my ( $self, $param ) = @_;
 
     my $url = sprintf 'https://%s/%s/?application_id=%s',
-            $param{ 'api_uri' } ? $param{ 'api_uri' } : $self->{ 'api_uri' },
-            $param{ 'uri' },
+            $param->{ 'api_uri' } ? $param->{ 'api_uri' } : $self->{ 'api_uri' },
+            $param->{ 'uri' },
             $self->{ 'application_id' },
     ;
-    for ( qw/access_token account_id fields language expires_at search/ ) {
-        $url .= sprintf "&%s=%s", $_, $param{ $_ } if $param{ $_ }; 
+    for ( qw/access_token account_id fields language expires_at search limit/ ) {
+        $url .= sprintf "&%s=%s", $_, $param->{ $_ } if $param->{ $_ }; 
     }
 
     warn $url if $self->{ 'debug' };
     $self->_parse( decode_json $self->{ 'ua' }->get( $url )->decoded_content );
-    return $self->status;
+    return;
 }
 
 sub _post {
-    my ( $self, %param ) = @_;
+    my ( $self, $param ) = @_;
 
     my $url = sprintf 'https://%s/%s/', 
-        $param{ 'api_uri' } ? $param{ 'api_uri' } : $self->{ 'api_uri' },
-        $param{ 'uri' };
+        $param->{ 'api_uri' } ? $param->{ 'api_uri' } : $self->{ 'api_uri' },
+        $param->{ 'uri' };
 
-    $param{ 'application_id' } = $self->{ 'application_id' };
+    $param->{ 'application_id' } = $self->{ 'application_id' };
 
     warn $url if $self->{ 'debug' };
-    $self->_parse( decode_json $self->{ 'ua' }->post( $url, \%param )->decoded_content );
-    return $self->status;
+    $self->_parse( decode_json $self->{ 'ua' }->post( $url, $param )->decoded_content );
+    return;
 }
 
 sub _parse {
