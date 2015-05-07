@@ -1,4 +1,4 @@
-#!perl -T
+#!/usr/bin/env perl
 use 5.006;
 use strict;
 use warnings;
@@ -51,6 +51,7 @@ TODO: {
   );
 
   module_boilerplate_ok('lib/WG/API.pm');
+  module_boilerplate_ok('lib/WG/API/Error.pm');
 
 
 }
