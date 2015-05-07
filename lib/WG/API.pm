@@ -97,7 +97,12 @@ sub login {
 
 =cut
 
-sub prolongate { $_[0]->_post( { uri => 'auth/prolongate', access_token => $_[0]->{ 'access_token' }, expires_at => $_[1] ? $_[1] : $fortnight } ) }
+sub prolongate { 
+    $_[0]->_post( { 
+            uri => 'auth/prolongate', 
+            access_token => $_[0]->{ 'access_token' }, 
+            expires_at => $_[1] && ref $_[1] eq 'HASH' ? $_[1]->{ 'expires_at' } : $fortnight 
+        } ) }
 
 =head3 logout
 

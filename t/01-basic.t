@@ -18,14 +18,9 @@ ok( ! WG::API->new( application_id => $app_id ),    'create object with invalid 
 
 my $wg = WG::API->new( { application_id => $app_id } );
 ok( $wg,                                            'create object with valid app_id' );
-ok( ! $wg->login(),                                 'login without redirect_uri' );
-ok( ! $wg->login( { 'test', 'test' } ),                 'login with invalid params' );
-ok( $wg->login( 'api.worldoftanks.ru/wot/blank/' ), 'login with redirect_uri' );
-ok( $wg->login( { redirect_uri => 'api.worldoftanks.ru/wot/blank/',
-                    expires_at => '1',
-                } ),                                'login with valid params' );
-ok( $wg->login( { redirect_uri => 'api.worldoftanks.ru/wot/blank/',
-                } ),                                'login with redirect_uri and withour expires' );
+ok( $wg->login( { 
+            redirect_uri => 'api.worldoftanks.ru/wot/blank/',
+        } ),                                        'login with redirect_uri and withour expires' );
 ok( $wg->status eq 'ok',                            'check status' );
 ok( $wg->response,                                  'check response' );
 ok( ! $wg->error->code,                             'get error code' );
