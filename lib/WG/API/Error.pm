@@ -87,12 +87,12 @@ sub value { shift->{ 'value' } }
 sub _parse {
     my ( $self, $response ) = @_;
 
-   $self->{ 'code' }    = $response->{ 'code' };
-   $self->{ 'message' } = $response->{ 'message' };
-   $self->{ 'field' }   = $response->{ 'field' };
-   $self->{ 'value' }   = $response->{ 'value' };
+    $self->{ 'code' }    = $response->{ 'code' };
+    $self->{ 'message' } = $response->{ 'message' };
+    $self->{ 'field' }   = $response->{ 'field' };
+    $self->{ 'value' }   = $response->{ 'value' };
 
-   return;
+    return;
 }
 
 =head1 AUTHOR
