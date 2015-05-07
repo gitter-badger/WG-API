@@ -16,7 +16,7 @@ my $wg = WG::API->new( {
             debug           => '1',
         } );
 ok( $wg,                                            'create class with all params from ref' );
-ok( ! $wg->clans_list,                              'get clans list without access_token' );
+ok( ! $wg->clans_list,                              'get clans list without valid application_id' );
 ok( $wg->status eq 'error',                         'status eq error' );
 ok( $wg->error,                                     'get error object' );
 
