@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use lib ('./lib');
 use WG::API::Error;
+use WG::API::Data;
 use LWP;
 use JSON;
 use Data::Dumper;
