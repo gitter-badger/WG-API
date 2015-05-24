@@ -6,7 +6,6 @@ use strict;
 use warnings;
 use lib( './lib');
 use WG::API;
-use Data::Dumper;
 
 use Test::More;
 
