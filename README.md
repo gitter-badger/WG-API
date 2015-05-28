@@ -35,18 +35,15 @@ perldoc command.
 
 You can also look for information at:
 
-RT, CPAN's request tracker (report bugs here):
-  <http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API>
-  <https://github.com/cynovg/WG-API/issues>
+* [RT, CPAN's request tracker](http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API)
 
-AnnoCPAN, Annotated CPAN documentation
-  <http://annocpan.org/dist/WG-API>
+* [RT, Github request tracher (report bugs here)](https://github.com/cynovg/WG-API/issues)
 
-CPAN Ratings
-  <http://cpanratings.perl.org/d/WG-API>
+* [AnnoCPAN, Annotated CPAN documentation](http://annocpan.org/dist/WG-API)
 
-Search CPAN
-  <http://search.cpan.org/dist/WG-API/>
+* [CPAN Ratings](http://cpanratings.perl.org/d/WG-API)
+
+* [Search CPAN](http://search.cpan.org/dist/WG-API/)
 
 
 ## LICENSE AND COPYRIGHT
