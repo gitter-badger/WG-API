@@ -6,10 +6,10 @@ use warnings;
 use lib ('./lib');
 use WG::API::Error;
 use WG::API::Data;
+use WG::API::Auth;
 use LWP;
 use JSON;
 use Data::Dumper;
-use Readonly;
 
 =head1 NAME
 
@@ -23,7 +23,6 @@ Version 0.01
 
 our $VERSION = '0.01';
 
-Readonly::Scalar my $fortnight => '1209600';    #two weeks
 
 =head1 SYNOPSIS
 
@@ -63,53 +62,6 @@ sub new {
     }
     return;
 }
-
-=head2 AUTH
-
-=head3 login
-
-=cut
-
-sub login { 
-    my ( $self, $params ) = @_;
-
-    my ( $redirect_uri, $expires_at );
-    if ( ref $params eq 'HASH' && $params->{ 'redirect_uri' } ) {
-        $redirect_uri = $params->{ 'redirect_uri' };
-        $expires_at   = $params->{ 'expires_at' } || $fortnight;
-    } 
-    elsif ( ! ref $params ) {
-        $redirect_uri = $params;
-        $expires_at   = $fortnight;
-    }
-
-    $self->_post( {
-        api_uri     => 'api.worldoftanks.ru/wot',
-        uri         => 'auth/login', 
-        redirect_uri    => $redirect_uri, 
-        expires_at      => $expires_at,
-        nofollow        => 1,
-    } ) if $redirect_uri;
-
-    return $self->status && $self->status eq 'ok' ? '1' : '0';
-}  
-
-=head3 prolongate
-
-=cut
-
-sub prolongate { 
-    $_[0]->_post( { 
-            uri => 'auth/prolongate', 
-            access_token => $_[0]->{ 'access_token' }, 
-            expires_at => $_[1] && ref $_[1] eq 'HASH' ? $_[1]->{ 'expires_at' } : $fortnight 
-        } ) }
-
-=head3 logout
-
-=cut
-
-sub logout { $_[0]->_post( { uri => 'auth/logout', access_token => $_[0]->{ 'access_token' } } ) }
 
 =head2 CLANS 
 

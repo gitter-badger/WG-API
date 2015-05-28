@@ -16,10 +16,10 @@ my $wg = WG::API->new( {
             debug           => '1',
         } );
 # without data (invalid request)
-ok( ! $wg->data,                    'get response data' );
-ok( ! $wg->data->count,             'get data-object counter' );
-ok( ! $wg->data->all,               'get all data\'s from request' );
-ok( ! $wg->data->each,              'each next data-object from request' );
+ok( ! $wg->datas,                   'get response datas' );
+ok( ! $wg->datas->count,            'get data-object counter' );
+ok( ! $wg->datas->all,              'get all data\'s from request' );
+ok( ! $wg->datas->each,             'each next data-object from request' );
 
     $wg = WG::API->new( { 
             application_id  => 'demo',
@@ -28,9 +28,9 @@ ok( ! $wg->data->each,              'each next data-object from request' );
             debug           => '1',
         } );
 # with data (valid request)
-ok( $wg->data,                    'get response data' );
-ok( $wg->data->count,             'get data-object counter' );
-ok( $wg->data->all,               'get all data\'s from request' );
-ok( $wg->data->each,              'each next data-object from request' );
+ok( $wg->datas,                   'get response data' );
+ok( $wg->datas->count,            'get data-object counter' );
+ok( $wg->datas->all,              'get all data\'s from request' );
+ok( $wg->datas->each,             'each next data-object from request' );
 
 done_testing();
