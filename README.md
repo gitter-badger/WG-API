@@ -21,10 +21,10 @@ fixes for the module are worth downloading.
 
 To install this module, run the following commands:
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+    perl Makefile.PL
+    make
+    make test
+    make install
 
 ## SUPPORT AND DOCUMENTATION
 
@@ -35,17 +35,18 @@ perldoc command.
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API
+RT, CPAN's request tracker (report bugs here):
+  <http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API>
+  <https://github.com/cynovg/WG-API/issues>
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/WG-API
+AnnoCPAN, Annotated CPAN documentation
+  <http://annocpan.org/dist/WG-API>
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/WG-API
+CPAN Ratings
+  <http://cpanratings.perl.org/d/WG-API>
 
-    Search CPAN
-        http://search.cpan.org/dist/WG-API/
+Search CPAN
+  <http://search.cpan.org/dist/WG-API/>
 
 
 ## LICENSE AND COPYRIGHT
@@ -56,7 +57,7 @@ This program is free software; you can redistribute it and/or modify it
 under the terms of the the Artistic License (2.0). You may obtain a
 copy of the full license at:
 
-L<http://www.perlfoundation.org/artistic_license_2_0>
+<http://www.perlfoundation.org/artistic_license_2_0>
 
 Any use, modification, and distribution of the Standard or Modified
 Versions is governed by this Artistic License. By using, modifying or
