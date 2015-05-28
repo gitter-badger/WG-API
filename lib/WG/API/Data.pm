@@ -3,6 +3,7 @@ package WG::API::Data;
 use 5.014;
 use strict;
 use warnings;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -39,12 +40,10 @@ Create new error object.
 =cut
 
 sub new {
-    my $class = shift;
+    my ( $class, $params ) = @_;
     
-    my $self = {};
+    my $self = $params;
     bless $self, ref( $class ) || $class;
-
-    $self->_parse( @_ );
 
     return $self;
 }
