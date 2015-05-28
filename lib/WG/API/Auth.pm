@@ -3,7 +3,9 @@ package WG::API::Auth;
 use 5.014;
 use strict;
 use warnings;
+use base qw/WG::API/;
 use Readonly;
+use LWP;
  
 =head1 NAME
 
@@ -41,23 +43,13 @@ Perhaps a little code snippet.
 sub login { 
     my ( $self, $params ) = @_;
 
-    my ( $redirect_uri, $expires_at );
-    if ( ref $params eq 'HASH' && $params->{ 'redirect_uri' } ) {
-        $redirect_uri = $params->{ 'redirect_uri' };
-        $expires_at   = $params->{ 'expires_at' } || $fortnight;
-    } 
-    elsif ( ! ref $params ) {
-        $redirect_uri = $params;
-        $expires_at   = $fortnight;
-    }
-
     $self->_post( {
         api_uri     => 'api.worldoftanks.ru/wot',
         uri         => 'auth/login', 
-        redirect_uri    => $redirect_uri, 
-        expires_at      => $expires_at,
-        nofollow        => 1,
-    } ) if $redirect_uri;
+        redirect_uri    => $params->{ 'redirect_uri' }, 
+        expires_at      => $params->{ 'expires_at' } || $fortnight,
+        nofollow        => $params->{ 'nofollow' } ? '1': '0',
+    } );
 
     return $self->status && $self->status eq 'ok' ? $self->{ 'data' } : $self->{ 'error' };
 }  
