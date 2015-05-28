@@ -8,6 +8,7 @@ use WG::API::Error;
 use WG::API::Data;
 use LWP;
 use JSON;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -146,7 +147,7 @@ sub _parse {
             for my $data ( @{ $response->{ 'data' } } ) {
                 push @{ $self->{ 'response' } }, WG::API::Data->new( $data );
             };
-        } elsif ( ref $response->{ 'data' } eq 'SCALAR' ) {
+        } elsif ( ref $response->{ 'data' } eq 'HASH' ) {
             push @{ $self->{ 'response' } }, $response->{ 'data' };
         } else {
             die Dumper $response;
