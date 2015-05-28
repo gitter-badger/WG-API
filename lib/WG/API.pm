@@ -6,7 +6,7 @@ use warnings;
 use lib ('./lib');
 use WG::API::Error;
 use WG::API::Data;
-use WG::API::Auth;
+use WG::API::Clans;
 use LWP;
 use JSON;
 use Data::Dumper;
