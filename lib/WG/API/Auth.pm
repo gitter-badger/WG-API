@@ -43,15 +43,18 @@ Perhaps a little code snippet.
 sub login { 
     my ( $self, $params ) = @_;
 
-    $self->_post( {
-        api_uri     => 'api.worldoftanks.ru/wot',
-        uri         => 'auth/login', 
-        redirect_uri    => $params->{ 'redirect_uri' }, 
-        expires_at      => $params->{ 'expires_at' } || $fortnight,
-        nofollow        => $params->{ 'nofollow' } ? '1': '0',
-    } );
+    if ( ! $params || ref $params eq 'HASH' ) {
+        $self->_post( {
+            api_uri     => 'api.worldoftanks.ru/wot',
+            uri         => 'auth/login', 
+            redirect_uri    => $params->{ 'redirect_uri' }, 
+            expires_at      => $params->{ 'expires_at' } || $fortnight,
+            nofollow        => $params->{ 'nofollow' } ? '1': '0',
+        } );
 
-    return $self->status && $self->status eq 'ok' ? $self->{ 'data' } : $self->{ 'error' };
+        return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    }
+    return;
 }  
 
 =head3 prolongate
