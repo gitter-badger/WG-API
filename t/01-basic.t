@@ -17,24 +17,11 @@ ok( ! WG::API->new( application_id => $app_id ),    'create object with invalid 
 
 my $wg = WG::API->new( { application_id => $app_id } );
 ok( $wg,                                            'create object with valid app_id' );
-ok( $wg->login( { 
-            redirect_uri => 'api.worldoftanks.ru/wot/blank/',
-        } ),                                        'login with redirect_uri and withour expires' );
-ok( $wg->status eq 'ok',                            'check status' );
-ok( $wg->response,                                  'check response' );
-ok( ! $wg->error->code,                             'get error code' );
-ok( ! $wg->login( 'blank' ),                        'login with invalid redirect_uri' );
-ok( $wg->error->code,                               'check error code' );
-
-my $wgn = $wg->new( { 
+ok( $wg->new( { 
             application_id  => 'demo1',
             lang            => 'ru',
             api_uri         => 'api.worldoftanks.ru/wgn',
             debug           => '1',
-        } );
-ok( $wgn,                                           'create class with all params from ref' );
-ok( ! $wgn->clans_list( { 
-            'api_uri' => 'test.ru',
-        } ),                                        'get clans list from invalid url' );
+        } ),                                         'create class with all params from ref' );
 
 done_testing();
