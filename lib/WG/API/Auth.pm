@@ -63,6 +63,7 @@ sub login {
 
 sub prolongate { 
     $_[0]->_post( { 
+            api_uri     => 'api.worldoftanks.ru/wot',
             uri => 'auth/prolongate', 
             access_token => $_[0]->{ 'access_token' }, 
             expires_at => $_[1] && ref $_[1] eq 'HASH' ? $_[1]->{ 'expires_at' } : $fortnight 
@@ -75,6 +76,7 @@ sub prolongate {
 
 sub logout { 
     $_[0]->_post( { 
+            api_uri     => 'api.worldoftanks.ru/wot',
             uri => 'auth/logout', 
             access_token => $_[0]->{ 'access_token' } 
         } ) 
