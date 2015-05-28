@@ -63,31 +63,6 @@ sub new {
     return;
 }
 
-=head2 CLANS 
-
-=head3 clans_list
-
-Return clans list
-
-=cut
-
-sub clans_list {
-    my ( $self, $params ) = @_;
-
-    if ( $params && ref $params eq 'HASH' ) {
-        $self->_get( { 
-            uri => 'clans/list',
-            %$params,
-        } );
-    } else {
-        $self->_get( { 
-            uri => 'clans/list'
-        } );
-    }
-
-    return $self->status && $self->status eq 'ok' ? '1' : '0';
-}
-
 =head2 INTERNAL DATA
 
 =head3 status
