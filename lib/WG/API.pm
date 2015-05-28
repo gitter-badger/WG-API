@@ -142,9 +142,15 @@ sub _parse {
             $response->{ 'error' },
         );
     } else {
-        for my $data ( @{ $response->{ 'data' } } ) {
-            push @{ $self->{ 'response' } }, WG::API::Data->new( $data );
-        };
+        if ( ref $response->{ 'data' } eq 'ARRAY' ) {
+            for my $data ( @{ $response->{ 'data' } } ) {
+                push @{ $self->{ 'response' } }, WG::API::Data->new( $data );
+            };
+        } elsif ( ref $response->{ 'data' } eq 'SCALAR' ) {
+            push @{ $self->{ 'response' } }, $response->{ 'data' };
+        } else {
+            die Dumper $response;
+        }
     }
 
     return;
