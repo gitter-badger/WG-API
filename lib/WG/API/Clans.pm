@@ -3,6 +3,7 @@ package WG::API::Clans;
 use 5.014;
 use strict;
 use warnings;
+use base qw/WG::API/;
 
 =head1 NAME
 
@@ -43,13 +44,15 @@ sub clans_list {
             uri => 'clans/list',
             %$params,
         } );
-    } else {
+    } elsif ( ! $params ) {
         $self->_get( { 
             uri => 'clans/list'
         } );
+    } else {
+        return;
     }
 
-    return $self->status && $self->status eq 'ok' ? $self->{ 'data' } : $self->{ 'error' };
+    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
 }
 
 =head2 clans_info
