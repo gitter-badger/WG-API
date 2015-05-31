@@ -4,6 +4,7 @@ use 5.014;
 use strict;
 use warnings;
 use base qw/WG::API/;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -32,7 +33,7 @@ Perhaps a little code snippet.
 
 =head2 clans_list
 
-    Select clans list 
+Fetch clans list 
 
 =cut
 
@@ -57,9 +58,67 @@ sub clans_list {
 
 =head2 clans_info
 
-    Fetch clan info
+Fetch clan info
 
 =cut
+
+sub clans_info {
+    my ( $self, $params ) = @_;
+
+    return unless $params && ref $params eq 'HASH' && defined $params->{ 'clan_id' };
+
+    warn Dumper $params;
+    $self->_get( { 
+            uri => 'clans/info',
+            %$params,
+        } );
+
+    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+}
+
+=head2 clans_membersinfo 
+
+Fetch info about clan members
+
+=cut
+
+sub clans_membersinfo {
+    my ( $self, $params ) = @_;
+
+    return unless $params && ref $params eq 'HASH' && defined $params->{ 'account_id' };
+
+    $self->_get( { 
+            uri => 'clans/memberslist',
+            %$params,
+        } );
+
+    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+}
+
+=head2 clans_glossary
+
+Fetch clans glossary
+
+=cut
+
+sub clans_glossary {
+    my ( $self, $params ) = @_;
+
+    if ( $params && ref $params->{ 'fields' } ) {
+        $self->_get( { 
+            uri => 'clans/glossary',
+            %$params,
+        } );
+    } elsif ( ! $params ) {
+        $self->_get( { 
+            uri => 'clans/glossay'
+        } );
+    } else {
+        return;
+    }
+
+    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+}
 
 =head1 AUTHOR
 
