@@ -35,6 +35,16 @@ Perhaps a little code snippet.
 
 Fetch clans list 
 
+    $foo->clans_list( $args );
+
+    args:
+        language
+        fields
+        search
+        order_by
+        limit
+        page_no
+
 =cut
 
 sub clans_list {
