@@ -79,6 +79,12 @@ Return response
 
 sub response { shift->{ 'response' } }
 
+=head3 meta
+
+=cut
+
+sub meta { shift->{ 'meta' } }
+
 =head3 error
 
 Return WG::API::Error object
@@ -142,6 +148,8 @@ sub _parse {
             $response->{ 'error' },
         );
     } else {
+        $self->{ 'meta' } = $response->{ 'meta' };
+
         if ( ref $response->{ 'data' } eq 'ARRAY' ) {
             for my $data ( @{ $response->{ 'data' } } ) {
                 push @{ $self->{ 'response' } }, WG::API::Data->new( $data );

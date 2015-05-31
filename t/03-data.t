@@ -27,6 +27,7 @@ ok( ! $wg->response,                   'get response datas' );
 # with data (valid request)
 $wg->clans_list( { limit => '1' } );
 ok( $wg->response,                   'get response data' );
-ok( scalar @{ $wg->response } == 1,     'response count ok' );
+ok( $wg->meta,                          'get response meta' );
+ok( scalar @{ $wg->response } == $wg->meta->{ 'count' },     'response count ok' );
 
 done_testing();
