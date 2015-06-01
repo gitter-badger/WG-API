@@ -4,7 +4,6 @@ use 5.014;
 use strict;
 use warnings;
 use base qw/WG::API/;
-use Data::Dumper;
 
 =head1 NAME
 
@@ -77,7 +76,6 @@ sub clans_info {
 
     return unless $params && ref $params eq 'HASH' && defined $params->{ 'clan_id' };
 
-    warn Dumper $params;
     $self->_get( { 
             uri => 'clans/info',
             %$params,
