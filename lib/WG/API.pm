@@ -135,6 +135,7 @@ sub _parse {
                 message => 'invalid api_uri',
                 field   => 'xxx',
                 value   => 'xxx',
+                raw     => Dumper $response,
             },
         };
     }
