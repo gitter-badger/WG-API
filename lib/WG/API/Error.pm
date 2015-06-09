@@ -43,7 +43,7 @@ sub new {
     my $class = shift;
     
     my $self = {};
-    bless $self, ref( $class ) || $class;
+    bless $self, ref( $class ) ? ref( $class ) : $class;
 
     $self->_parse( @_ );
 

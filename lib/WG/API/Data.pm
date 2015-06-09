@@ -40,10 +40,10 @@ Create new error object.
 =cut
 
 sub new {
-    my ( $class, $params ) = @_;
+    my $class = shift;
     
-    my $self = $params;
-    bless $self, ref( $class ) || $class;
+    my $self = $_[ 0 ] ? shift : {};
+    bless $self, ref( $class ) ? ref( $class ) : $class;
 
     return $self;
 }

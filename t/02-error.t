@@ -42,4 +42,7 @@ ok( ! $wg->error->message,                          'get error message' );
 ok( ! $wg->error->field,                            'get error field' );
 ok( ! $wg->error->value,                            'get value for error field' );
 
+my $error = $wg->error;
+ok( $error->new,                                'create error object from ref' );
+
 done_testing();
