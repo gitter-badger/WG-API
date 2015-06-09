@@ -34,8 +34,6 @@ ok( $wg->error->value,                              'get value for error field' 
         } );
 ok( $wg,                                            'create class with all params from ref' );
 my $t = $wg->clans_list( { limit => '1' } ); #,            'get clans list without access_token' );
-warn Dumper $t;
-#ok( $wg->clans_list( { limit => '1' } ),            'get clans list without access_token' );
 ok( $wg->status eq 'ok',                            'status eq ok' );
 ok( $wg->error,                                     'get error object' );
 
