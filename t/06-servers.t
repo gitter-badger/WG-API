@@ -14,5 +14,7 @@ can_ok( 'WG::API::Servers', qw/servers_info/);
 $wgc->servers_info;
 ok( $wgc->status eq 'ok',     'get servers info status is ok' );
 ok( $wgc->response,           'get response' );
+$wgc->servers_info( { game => 'wowp' } );
+ok( $wgc->status eq 'ok',     'get status wowp server' );
 
 done_testing();
