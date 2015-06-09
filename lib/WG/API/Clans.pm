@@ -63,7 +63,7 @@ sub clans_list {
         return;
     }
 
-    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
 }
 
 =head2 clans_info
@@ -82,7 +82,7 @@ sub clans_info {
             %$params,
         } );
 
-    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
 }
 
 =head2 clans_membersinfo 
@@ -97,11 +97,11 @@ sub clans_membersinfo {
     return unless $params && ref $params eq 'HASH' && defined $params->{ 'account_id' };
 
     $self->_get( { 
-            uri => 'clans/memberslist',
+            uri => 'clans/membersinfo',
             %$params,
         } );
 
-    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
 }
 
 =head2 clans_glossary
@@ -113,7 +113,7 @@ Fetch clans glossary
 sub clans_glossary {
     my ( $self, $params ) = @_;
 
-    if ( $params && ref $params->{ 'fields' } ) {
+    if ( $params && ref $params eq 'HASH' && $params->{ 'fields' } ) {
         $self->_get( { 
             uri => 'clans/glossary',
             %$params,
@@ -126,7 +126,7 @@ sub clans_glossary {
         return;
     }
 
-    return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
 }
 
 =head1 AUTHOR
