@@ -23,9 +23,10 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-    use WG::API;
+    use WG::API::Clans;
 
-    my $foo = WG::API->clans_list();
+    my $foo = WG::API::Clans->new();
+    my @list = $foo->clans_list();
     ...
 
 =head1 METHODS
