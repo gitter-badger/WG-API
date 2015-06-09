@@ -16,6 +16,7 @@ ok( ! $wg->login( 'api.worldoftanks.ru/wot/blank/' ),   'login with invalid para
 ok( $wg->login( { 
             redirect_uri => 'api.worldoftanks.ru/wot/blank/',
             expires_at => '100',
+            nofollow        => 1,
          } ),                                       'login with valid params' );
 ok( ! $wg->prolongate(),                            'prolongate tocken without logged user' );
 ok( ! $wg->prolongate( '100' ),                     'prolongate tocken without logged user and invalid params' );

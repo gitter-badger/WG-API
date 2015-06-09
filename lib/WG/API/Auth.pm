@@ -48,11 +48,11 @@ sub login {
             api_uri     => 'api.worldoftanks.ru/wot',
             uri         => 'auth/login', 
             redirect_uri    => $params->{ 'redirect_uri' }, 
-            expires_at      => $params->{ 'expires_at' } || $fortnight,
+            expires_at      => $params->{ 'expires_at' }    ? $params->{ 'expires_at' } : $fortnight,
             nofollow        => $params->{ 'nofollow' } ? '1': '0',
         } );
 
-        return $self->status && $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+        return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
     }
     return;
 }  
