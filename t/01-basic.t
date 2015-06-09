@@ -23,5 +23,25 @@ ok( $wg->new( {
             api_uri         => 'api.worldoftanks.ru/wgn',
             debug           => '1',
         } ),                                         'create class with all params from ref' );
+ok( ! WG::API->new( { app_id => $app_id } ),              'create object without application_id');
+ok( ! $wg->_get( { 
+            api_uri => 'http://www.ru/',
+            uri     => 'test',
+        } ), 'check api_uri params' );
+
+ok( ! $wg->_get( { 
+            api     => 'http://www.ru/',
+            uri     => 'test',
+        } ), 'check api_uri params' );
+
+ok( ! $wg->_post( { 
+            api_uri => 'http://www.ru/',
+            uri     => 'test',
+        } ), 'check api_uri params' );
+
+ok( ! $wg->_post( { 
+            api     => 'http://www.ru/',
+            uri     => 'test',
+        } ), 'check api_uri params' );
 
 done_testing();

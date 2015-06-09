@@ -54,7 +54,7 @@ sub new {
         $self->{ 'lang' }       = 'ru' unless defined $self->{ 'lang' };
         $self->{ 'api_uri' }    = 'api.worldoftanks.ru/wgn' unless defined $self->{ 'api_uri' };
 
-        bless $self, ref( $class ) || $class;
+        bless $self, ref( $class ) ? ref( $class ) : $class;
 
         return $self;
     }
@@ -155,10 +155,8 @@ sub _parse {
             for my $data ( @{ $response->{ 'data' } } ) {
                 push @{ $self->{ 'response' } }, WG::API::Data->new( $data );
             };
-        } elsif ( ref $response->{ 'data' } eq 'HASH' ) {
-            push @{ $self->{ 'response' } }, $response->{ 'data' };
         } else {
-            die Dumper $response;
+            push @{ $self->{ 'response' } }, $response->{ 'data' };
         }
     }
 
