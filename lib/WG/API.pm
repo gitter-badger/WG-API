@@ -65,6 +65,7 @@ sub _init {
     $self->{ 'ua' }         = LWP::UserAgent->new();
     $self->{ 'lang' }       = 'ru' unless defined $self->{ 'lang' };
     $self->{ 'api_uri' }    = 'api.worldoftanks.ru/wgn' unless defined $self->{ 'api_uri' };
+    $self->{ 'status' }      = '';
 
     return $self;
 }
@@ -109,7 +110,7 @@ sub _get {
             $param->{ 'uri' },
             $self->{ 'application_id' },
     ;
-    for ( qw/access_token account_id fields language expires_at search limit clan_id page_no game/ ) {
+    for ( qw/access_token account_id fields language expires_at search limit clan_id page_no game type rank_field/ ) {
         $url .= sprintf "&%s=%s", $_, $param->{ $_ } if $param->{ $_ }; 
     }
 
