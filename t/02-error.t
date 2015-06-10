@@ -14,10 +14,9 @@ my $wg = WG::API::Clans->new( {
             application_id  => 'demo1',
             lang            => 'ru',
             api_uri         => 'api.worldoftanks.ru/wgn',
-            debug           => '1',
         } );
 ok( $wg,                                            'create class with all params from ref' );
-ok( $wg->clans_list,                              'get clans list without valid application_id' );
+ok( ! $wg->clans_list,                                'get clans list without valid application_id' );
 ok( $wg->status eq 'error',                         'status eq error' );
 ok( $wg->error,                                     'get error object' );
 
@@ -30,10 +29,9 @@ ok( $wg->error->value,                              'get value for error field' 
             application_id  => 'demo',
             lang            => 'ru',
             api_uri         => 'api.worldoftanks.ru/wgn',
-            debug           => '1',
         } );
 ok( $wg,                                            'create class with all params from ref' );
-my $t = $wg->clans_list( { limit => '1' } ); #,            'get clans list without access_token' );
+ok( $wg->clans_list( { limit => '1' } ),            'get clans list without access_token' );
 ok( $wg->status eq 'ok',                            'status eq ok' );
 ok( $wg->error,                                     'get error object' );
 
