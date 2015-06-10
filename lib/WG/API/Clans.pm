@@ -63,7 +63,7 @@ sub clans_list {
         return;
     }
 
-    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 clans_info
@@ -82,7 +82,7 @@ sub clans_info {
             %$params,
         } );
 
-    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->response : undef; 
 }
 
 =head2 clans_membersinfo 
@@ -101,7 +101,7 @@ sub clans_membersinfo {
             %$params,
         } );
 
-    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 clans_glossary
@@ -126,7 +126,7 @@ sub clans_glossary {
         return;
     }
 
-    return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head1 AUTHOR
