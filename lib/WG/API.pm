@@ -50,15 +50,23 @@ sub new {
 
         my $self = $params;
 
-        $self->{ 'ua' }         = LWP::UserAgent->new();
-        $self->{ 'lang' }       = 'ru' unless defined $self->{ 'lang' };
-        $self->{ 'api_uri' }    = 'api.worldoftanks.ru/wgn' unless defined $self->{ 'api_uri' };
-
         bless $self, ref( $class ) ? ref( $class ) : $class;
+
+        $self->_init();
 
         return $self;
     }
     return;
+}
+
+sub _init {
+    my $self = shift;
+
+    $self->{ 'ua' }         = LWP::UserAgent->new();
+    $self->{ 'lang' }       = 'ru' unless defined $self->{ 'lang' };
+    $self->{ 'api_uri' }    = 'api.worldoftanks.ru/wgn' unless defined $self->{ 'api_uri' };
+
+    return $self;
 }
 
 =head2 INTERNAL DATA
