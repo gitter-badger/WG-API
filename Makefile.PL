@@ -24,4 +24,5 @@ WriteMakefile(
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'WG-API-*' },
+    test  => { RECURSIVE_TEST_FILES => 1 },
 );
