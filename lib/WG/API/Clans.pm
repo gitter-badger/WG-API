@@ -120,7 +120,7 @@ sub clans_glossary {
         } );
     } elsif ( ! $params ) {
         $self->_get( { 
-            uri => 'clans/glossay'
+            uri => 'clans/glossary'
         } );
     } else {
         return;
