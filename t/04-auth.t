@@ -10,8 +10,8 @@ use WG::API::Auth;
 use Test::More;
 
 my $wg = WG::API::Auth->new( { application_id => 'demo' } );
-ok( $wg->login(),                                   'login without redirect_uri (default back_uri)' );
-ok( $wg->login( { 'test', 'test' } ),               'login with invalid params (invalid hash ignored)' );
+ok( ! $wg->login( ),                                   'login without redirect_uri (default back_uri, nofollow 0)' );
+ok( ! $wg->login( { 'test', 'test' } ),               'login with invalid params (invalid hash ignored)' );
 ok( ! $wg->login( 'api.worldoftanks.ru/wot/blank/' ),   'login with invalid params (scalar)' );
 ok( $wg->login( { 
             redirect_uri => 'api.worldoftanks.ru/wot/blank/',

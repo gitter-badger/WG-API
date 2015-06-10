@@ -52,7 +52,7 @@ sub login {
             nofollow        => $params->{ 'nofollow' } ? '1': '0',
         } );
 
-        return $self->status eq 'ok' ? $self->{ 'response' } : $self->{ 'error' };
+        return $self->status eq 'ok' ? $self->response : undef;
     }
     return;
 }  
