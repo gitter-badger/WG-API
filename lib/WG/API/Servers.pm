@@ -37,7 +37,16 @@ Fetch info abou servers
 
 =cut
 
-sub servers_info { $_[0]->_get( { uri => 'servers/info', $_[1] ? %{ $_[ 1 ] } : () } ) }
+sub servers_info { 
+    my $self = shift;
+
+    $self->_get( { 
+            uri => 'servers/info', 
+            $_[ 0 ] ? %{ $_[ 0 ] } : () 
+        } );
+    
+    return $self->status eq 'ok' ? $self->response : undef;
+}
 
 =head1 AUTHOR
 
