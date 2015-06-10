@@ -40,7 +40,7 @@ Perhaps a little code snippet.
 sub ratings_types {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 ratings_accounts
@@ -52,7 +52,7 @@ sub ratings_types {
 sub ratings_accounts {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 ratings_neighbors 
@@ -64,7 +64,7 @@ sub ratings_accounts {
 sub ratings_neighbors {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 ratings_top
@@ -76,7 +76,7 @@ sub ratings_neighbors {
 sub ratings_top {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 ratings_dates
@@ -88,7 +88,7 @@ sub ratings_top {
 sub ratings_dates {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head1 AUTHOR

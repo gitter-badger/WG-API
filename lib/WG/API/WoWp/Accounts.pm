@@ -40,7 +40,7 @@ Perhaps a little code snippet.
 sub account_list {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->resonse : undef;
 }
 
 =head2 account_info 
@@ -52,7 +52,7 @@ sub account_list {
 sub account_info {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->resonse : undef;
 }
 
 =head2 account_planes
@@ -64,7 +64,7 @@ sub account_info {
 sub account_planes {
     my $self = shift;
 
-    return;
+    return $self->status eq 'ok' ? $self->resonse : undef;
 }
 
 =head1 AUTHOR
