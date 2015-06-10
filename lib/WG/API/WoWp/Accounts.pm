@@ -38,7 +38,14 @@ Perhaps a little code snippet.
 =cut
 
 sub account_list {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'search' } && length $param->{ 'search' } >= 3 ) {
+            $self->_get( {
+                uri     => 'account/list',
+                %$param,
+            } );
+    }
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -50,7 +57,14 @@ sub account_list {
 =cut
 
 sub account_info {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    if ( $param && ref $param eq 'HASH' && $param->{ 'account_id' } ) {
+        $self->_get( {
+                uri     => 'account/info',
+                %$param,
+            } );
+    }
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -62,7 +76,14 @@ sub account_info {
 =cut
 
 sub account_planes {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    if ( $param && ref $param eq 'HASH' && $param->{ 'account_id' } ) {
+        $self->_get( {
+                uri     => 'account/planes',
+                %$param,
+            } );
+    }
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
