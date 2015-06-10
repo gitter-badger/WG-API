@@ -38,7 +38,18 @@ Perhaps a little code snippet.
 =cut
 
 sub ratings_types {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    if ( $param && ref $param eq 'HASH' ) {
+        $self->_get( {
+                uri     => 'ratings/types',
+                %$param,
+            } );
+    } elsif ( ! $param ) {
+        $self->_get( {
+                uri     => 'ratings/types',
+            } );
+    }
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -50,7 +61,15 @@ sub ratings_types {
 =cut
 
 sub ratings_accounts {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    return unless $param && ref $param eq 'HASH';
+    warn '!!!' && return unless defined $param->{ 'account_id' } && defined $param->{ 'type' };
+
+    $self->_get( { 
+        uri     => 'ratings/accounts',
+        %$param,
+    } );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -62,7 +81,15 @@ sub ratings_accounts {
 =cut
 
 sub ratings_neighbors {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    return unless $param && ref $param eq 'HASH';
+    return unless defined $param->{ 'account_id' } && defined $param->{ 'type' } && defined $param->{ 'rank_field' };
+
+    $self->_get( { 
+        uri     => 'ratings/neighbors',
+        %$param,
+    } );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -74,7 +101,15 @@ sub ratings_neighbors {
 =cut
 
 sub ratings_top {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    return unless $param && ref $param eq 'HASH';
+    return unless defined $param->{ 'type' } && defined $param->{ 'rank_field' };
+
+    $self->_get( { 
+        uri     => 'ratings/top',
+        %$param,
+    } );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -86,7 +121,15 @@ sub ratings_top {
 =cut
 
 sub ratings_dates {
-    my $self = shift;
+    my ( $self, $param ) = @_;
+
+    return unless $param && ref $param eq 'HASH';
+    return unless defined $param->{ 'type' };
+
+    $self->_get( { 
+        uri     => 'ratings/dates',
+        %$param,
+    } );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
