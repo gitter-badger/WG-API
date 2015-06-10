@@ -12,7 +12,6 @@ my $wg = WG::API::Clans->new( {
             application_id  => 'demo1',
             lang            => 'ru',
             api_uri         => 'api.worldoftanks.ru/wgn',
-            debug           => '1',
         } );
 # without data (invalid request)
 $wg->clans_list( { limit => '1' } );
@@ -22,7 +21,6 @@ ok( ! $wg->response,                   'get response datas' );
             application_id  => 'demo',
             lang            => 'ru',
             api_uri         => 'api.worldoftanks.ru/wgn',
-            debug           => '1',
         } );
 # with data (valid request)
 $wg->clans_list( { limit => '1' } );
