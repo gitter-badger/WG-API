@@ -26,18 +26,42 @@ Perhaps a little code snippet.
      use WG::API::WoT::Stronghold
  
      my $foo = WG::API::Stronghold->new();
-     my @list = $foo->m();
+     my @list = $foo->stronghold_info();
      ...
 
 =head1 METHODS
 
-=head2 m
+=head2 stronghold_info
 
 ...
 
 =cut
 
-sub m {
+sub stronghold_info {
+    my $self = shift;
+
+    return;
+}
+
+=head2 stronghold_buildings
+
+...
+
+=cut
+
+sub stronghold_buildings {
+    my $self = shift;
+
+    return;
+}
+
+=head2 stronghold_accountstats 
+
+...
+
+=cut
+
+sub stronghold_accountstats {
     my $self = shift;
 
     return;

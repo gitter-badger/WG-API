@@ -31,13 +31,13 @@ Perhaps a little code snippet.
 
 =head1 METHODS
 
-=head2 m
+=head2 clan_provinces
 
 ...
 
 =cut
 
-sub m {
+sub clan_provinces {
     my $self = shift;
 
     return;

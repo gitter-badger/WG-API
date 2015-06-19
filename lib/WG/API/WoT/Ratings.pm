@@ -7,7 +7,7 @@ use base qw/WG::API::WoT/;
 
 =head1 NAME
 
-WG::API::WoT::
+WG::API::WoT::Ratings
 
 =head1 VERSION
 
@@ -26,18 +26,66 @@ Perhaps a little code snippet.
      use WG::API::WoT::Ratings
  
      my $foo = WG::API::Ratings->new();
-     my @list = $foo->m();
+     my @list = $foo->rating_types();
      ...
 
 =head1 METHODS
 
-=head2 m
+=head2 ratings_types 
 
 ...
 
 =cut
 
-sub m {
+sub ratings_types {
+    my $self = shift;
+
+    return;
+}
+
+=head2 ratings_dates
+
+...
+
+=cut
+
+sub ratings_dates {
+    my $self = shift;
+
+    return;
+}
+
+=head2 ratings_accounts 
+
+...
+
+=cut
+
+sub ratings_accounts {
+    my $self = shift;
+
+    return;
+}
+
+=head2 ratings_neighbors 
+
+...
+
+=cut
+
+sub ratings_neighbors {
+    my $self = shift;
+
+    return;
+}
+
+=head2 ratings_top
+
+...
+
+=cut
+
+sub ratings_top {
     my $self = shift;
 
     return;

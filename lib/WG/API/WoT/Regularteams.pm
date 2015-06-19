@@ -26,18 +26,30 @@ Perhaps a little code snippet.
      use WG::API::WoT::Regularteams
  
      my $foo = WG::API::Regularteams->new();
-     my @list = $foo->m();
+     my @list = $foo->regularteams_list();
      ...
 
 =head1 METHODS
 
-=head2 m
+=head2 regularteams_list
 
 ...
 
 =cut
 
-sub m {
+sub regularteams_list {
+    my $self = shift;
+
+    return;
+}
+
+=head2 regularteams_info
+
+...
+
+=cut
+
+sub regularteams_info {
     my $self = shift;
 
     return;

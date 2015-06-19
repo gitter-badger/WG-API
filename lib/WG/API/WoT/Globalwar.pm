@@ -26,22 +26,155 @@ Perhaps a little code snippet.
      use WG::API::WoT::Globalwar
  
      my $foo = WG::API::Globalwar->new();
-     my @list = $foo->m();
+     my @list = $foo->globalwar_clans();
      ...
 
 =head1 METHODS
 
-=head2 m
+=head2 globalwar_clans 
 
 ...
 
-=cut
+=cut 
 
-sub m {
+sub globalwar_clans{
     my $self = shift;
 
     return;
 }
+
+=head2 globalwar_maps 
+
+...
+
+=cut 
+
+sub globalwar_maps {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_provinces 
+
+...
+
+=cut 
+
+sub globalwar_provinces {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_tournaments 
+
+...
+
+=cut 
+
+sub globalwar_tournaments {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_battles 
+
+...
+
+=cut 
+
+sub globalwar_battles {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_accountpoints 
+
+...
+
+=cut 
+
+sub globalwar_accountpoints {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_accountpointshistory 
+
+...
+
+=cut 
+
+sub globalwar_accountpointshistory {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_accountpointsrating 
+
+...
+
+=cut 
+
+sub globalwar_accountpointsrating {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_clanpoints 
+
+...
+
+=cut 
+
+sub globalwar_clanpoints {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_clanpointshistory 
+
+...
+
+=cut 
+
+sub globalwar_clanpointshistory {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_clanpointsrating 
+
+...
+
+=cut 
+
+sub globalwar_clanpointsrating {
+    my $self = shift;
+
+    return;
+}
+
+=head2 globalwar_clanprovinces
+
+...
+
+=cut 
+
+sub globalwar_clanprovinces {
+    my $self = shift;
+
+    return;
+}
+
 
 =head1 AUTHOR
 

@@ -26,18 +26,30 @@ Perhaps a little code snippet.
      use WG::API::WoT::Tanks
  
      my $foo = WG::API::Tanks->new();
-     my @list = $foo->m();
+     my @list = $foo->tanks_stats();
      ...
 
 =head1 METHODS
 
-=head2 m
+=head2 tanks_stats
 
 ...
 
 =cut
 
-sub m {
+sub tanks_stats {
+    my $self = shift;
+
+    return;
+}
+
+=head2 tanks_achievements 
+
+...
+
+=cut
+
+sub tanks_achievements {
     my $self = shift;
 
     return;

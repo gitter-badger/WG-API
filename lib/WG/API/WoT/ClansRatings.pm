@@ -31,13 +31,57 @@ Perhaps a little code snippet.
 
 =head1 METHODS
 
-=head2 m
+=head2 clanratings_types 
 
 ...
 
 =cut
 
-sub m {
+sub clanratings_types {
+    my $self = shift;
+
+    return;
+}
+=head2 clanratings_dates 
+
+...
+
+=cut
+
+sub clanratings_dates {
+    my $self = shift;
+
+    return;
+}
+=head2 clanratings_clans 
+
+...
+
+=cut
+
+sub clanratings_clans {
+    my $self = shift;
+
+    return;
+}
+=head2 clanratings_neighbors 
+
+...
+
+=cut
+
+sub clanratings_neighbors {
+    my $self = shift;
+
+    return;
+}
+=head2 clanratings_top
+
+...
+
+=cut
+
+sub clanratings_top {
     my $self = shift;
 
     return;
