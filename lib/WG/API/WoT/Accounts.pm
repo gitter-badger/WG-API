@@ -23,7 +23,7 @@ Quick summary of what the module does.
 
 Perhaps a little code snippet.
 
-     use WG::API::WoWp::Accounts
+     use WG::API::WoT::Accounts
  
      my $foo = WG::API::Accounts->new();
      my @list = $foo->account_list();
