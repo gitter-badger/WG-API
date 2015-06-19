@@ -12,7 +12,7 @@ BEGIN: { use_ok( 'WG::API::WoT::ClansRatings' ) };
 TODO: {
     can_ok( 'WG::API::WoT::ClansRatings', qw/clanratings_types clanratings_dates clanratings_clans clanratings_neighbors clanratings_top/ );
 
-    my $wot = WG::API::WoT::ClanRatings->new( { application_id => 'demo' } );
+    my $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
     ok( $wot->clanratings_types(), 'get clan ratings types' );
     ok( $wot->clanratings_dates(), 'get clan ratings dates' );
     ok( $wot->clanratings_clans(), 'get clan ratings clans' );

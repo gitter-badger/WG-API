@@ -6,7 +6,7 @@ use v5.014;
 use strict;
 use warnings;
 use Test::More;
-BEGIN: { use_ok( 'WG::API::Wot::Stronghold' ) };
+BEGIN: { use_ok( 'WG::API::WoT::Stronghold' ) };
 
 TODO: {
     can_ok( 'WG::API::WoT::Stronghold', qw/stronghold_info stronghold_buildings stronghold_accountstats/ );

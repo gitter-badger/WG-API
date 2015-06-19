@@ -20,7 +20,7 @@ BEGIN {
 }
 diag( "WG::API::WoT                 $WG::API::WoT::VERSION,                 Perl $], $^X" );
 diag( "WG::API::WoT::Accounts       $WG::API::WoT::Accounts::VERSION,       Perl $], $^X" );
-diag( "WG::API::WoT::Clan           $WG::API::WoT::Clan::VERSION,           Perl $], $^X" );
+diag( "WG::API::WoT::Clans          $WG::API::WoT::Clans::VERSION,          Perl $], $^X" );
 diag( "WG::API::WoT::Stronghold     $WG::API::WoT::Stronghold::VERSION,     Perl $], $^X" );  
 diag( "WG::API::WoT::Globalwar      $WG::API::WoT::Globalwar::VERSION,      Perl $], $^X" );
 diag( "WG::API::WoT::Ratings        $WG::API::WoT::Ratings::VERSION,        Perl $], $^X" );

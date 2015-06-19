@@ -15,7 +15,7 @@ TODO: {
     ok( $wot->account_list(), 'get account list');
     ok( $wot->account_info(), 'get account info' );
     ok( $wot->account_tanks(), 'get account tanks' );
-    ok( $wot->account_avhievements(), 'get account achievements' );
+    ok( $wot->account_achievements(), 'get account achievements' );
 };
 
 done_testing();
