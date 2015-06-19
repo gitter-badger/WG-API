@@ -8,8 +8,10 @@ use warnings;
 use Test::More;
 BEGIN: { use_ok( 'WG::API::WoT::Stronghold' ) };
 
+can_ok( 'WG::API::WoT::Stronghold', qw/stronghold_info stronghold_buildings stronghold_accountstats/ );
+
 TODO: {
-    can_ok( 'WG::API::WoT::Stronghold', qw/stronghold_info stronghold_buildings stronghold_accountstats/ );
+    todo_skip 'not implemented', '3';
 
     my $wot = WG::API::WoT::Stronghold->new( { application_id => 'demo' } );
     ok( $wot->stronghold_info(), 'get info about stronghold' );

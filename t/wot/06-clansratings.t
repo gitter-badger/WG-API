@@ -9,8 +9,10 @@ use Test::More;
 
 BEGIN: { use_ok( 'WG::API::WoT::ClansRatings' ) };
 
+can_ok( 'WG::API::WoT::ClansRatings', qw/clanratings_types clanratings_dates clanratings_clans clanratings_neighbors clanratings_top/ );
+
 TODO: {
-    can_ok( 'WG::API::WoT::ClansRatings', qw/clanratings_types clanratings_dates clanratings_clans clanratings_neighbors clanratings_top/ );
+    todo_skip 'not implemented', '5';
 
     my $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
     ok( $wot->clanratings_types(), 'get clan ratings types' );

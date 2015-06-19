@@ -8,8 +8,10 @@ use warnings;
 use Test::More;
 BEGIN: { use_ok( 'WG::API::WoT::Clans' ) };
 
+can_ok( 'WG::API::WoT::Clans', qw/clan_provinces/ );
+
 TODO: {
-    can_ok( 'WG::API::WoT::Clans', qw/clan_provinces/ );
+    todo_skip 'not implemented', '1';
 
     my $wot = WG::API::WoT::Clans->new( { application_id => 'demo' } );
     ok( $wot->clan_provinces(), 'get clan provinces' );

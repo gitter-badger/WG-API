@@ -8,8 +8,10 @@ use warnings;
 use Test::More;
 BEGIN: { use_ok( 'WG::API::WoT::Ratings' ) };
 
+can_ok( 'WG::API::WoT::Ratings', qw/ratings_types ratings_dates ratings_accounts ratings_neighbors ratings_top/ );
+
 TODO: {
-    can_ok( 'WG::API::WoT::Ratings', qw/ratings_types ratings_dates ratings_accounts ratings_neighbors ratings_top/ );
+    todo_skip 'not_implemented', '5';
 
     my $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
     ok( $wot->ratings_types(), 'get ratings types' );

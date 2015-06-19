@@ -8,11 +8,13 @@ use warnings;
 use Test::More;
 BEGIN: { use_ok( 'WG::API::WoT::Globalwar' ) };
 
-TOSO: {
-    can_ok( 'WG::API::WoT::Globalwar', qw/
-        globalwar_clans globalwar_maps globalwar_provinces globalwar_tournaments globalwar_battles 
-        globalwar_accountpoints globalwar_accountpointshistory globalwar_accountpointsrating 
-        globalwar_clanpoints globalwar_clanpointshistory globalwar_clanpointsrating globalwar_clanprovinces/ );
+can_ok( 'WG::API::WoT::Globalwar', qw/
+    globalwar_clans globalwar_maps globalwar_provinces globalwar_tournaments globalwar_battles 
+    globalwar_accountpoints globalwar_accountpointshistory globalwar_accountpointsrating 
+    globalwar_clanpoints globalwar_clanpointshistory globalwar_clanpointsrating globalwar_clanprovinces/ );
+
+TODO: {
+    todo_skip 'not implemented', '12';
 
     my $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
     ok( $wot->globalwar_clans(), 'get global war clans');
