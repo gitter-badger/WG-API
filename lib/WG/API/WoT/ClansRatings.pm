@@ -42,6 +42,7 @@ sub clanratings_types {
 
     return;
 }
+
 =head2 clanratings_dates 
 
 ...
@@ -53,6 +54,7 @@ sub clanratings_dates {
 
     return;
 }
+
 =head2 clanratings_clans 
 
 ...
@@ -64,6 +66,7 @@ sub clanratings_clans {
 
     return;
 }
+
 =head2 clanratings_neighbors 
 
 ...
@@ -75,6 +78,7 @@ sub clanratings_neighbors {
 
     return;
 }
+
 =head2 clanratings_top
 
 ...
