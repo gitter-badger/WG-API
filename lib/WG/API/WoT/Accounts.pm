@@ -38,9 +38,22 @@ Perhaps a little code snippet.
 =cut
 
 sub account_list {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'search' } ) {
+        my $type = defined $param->{ 'type' } ? $param->{ 'type' } : 'startswith' ;
+        my $lenght = $type eq 'exact' ? 1 : 3;
+        if ( length $param->{ 'search' } >= $lenght ) {
+            $self->_get( {
+                    uri     => 'account/list',
+                    search  => $param->{ 'search' },
+                    type    => $type,
+                    %$param,
+                } );
+        }
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 account_info 
@@ -50,9 +63,17 @@ sub account_list {
 =cut
 
 sub account_info {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
+        $self->_get({ 
+                uri         => 'account/info',
+                account_id  => $param->{ 'account_id' },
+                %$param,
+            } );
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 account_tanks 
@@ -62,9 +83,17 @@ sub account_info {
 =cut
 
 sub account_tanks {
-    my $self = shift;
+    my ( $self, $param ) = shift;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
+        $self->_get({ 
+                uri     => 'account/tanks',
+                account_id  => $param->{ 'account_id' },
+                %$param,
+            } );
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 account_achievements
@@ -74,9 +103,17 @@ sub account_tanks {
 =cut
 
 sub account_achievements {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
+        $self->_get({ 
+                uri     => 'account/achievements',
+                account_id  => $param->{ 'account_id' },
+                %$param,
+            } );
+    }
+    
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head1 AUTHOR
