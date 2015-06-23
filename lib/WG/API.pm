@@ -100,7 +100,11 @@ Return WG::API::Error object
 
 =cut
 
-sub error { shift->{ 'error' } || WG::API::Error->new( ) }
+sub error { 
+    my $self = shift;
+
+    return $self->{ 'error' } || WG::API::Error->new( @_ );
+}
 
 sub _get {
     my ( $self, $param ) = @_;
@@ -114,6 +118,7 @@ sub _get {
         $url .= sprintf "&%s=%s", $_, $param->{ $_ } if $param->{ $_ }; 
     }
 
+    warn Dumper $url, $param if $self->{ 'debug' };
     my $response = $self->{ 'ua' }->get( $url, $param ); 
     $self->_parse( $response->is_success ? decode_json $response->decoded_content : undef );
     return;
@@ -128,6 +133,7 @@ sub _post {
 
     $param->{ 'application_id' } = $self->{ 'application_id' };
 
+    warn Dumper $url, $param if $self->{ 'debug' };
     my $response = $self->{ 'ua' }->post( $url, $param ); 
     $self->_parse( $response->is_success ? decode_json $response->decoded_content : undef );
     return;
@@ -149,6 +155,7 @@ sub _parse {
         };
     }
 
+    warn Dumper $response if $self->{ 'debug' };
     $self->{ 'status' } = $response->{ 'status' };
     delete $self->{ 'error' };
     delete $self->{ 'response' };
