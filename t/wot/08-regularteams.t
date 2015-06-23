@@ -11,12 +11,20 @@ BEGIN: { use_ok( 'WG::API::WoT::Regularteams' ) };
 
 can_ok( 'WG::API::WoT::Regularteams', qw/regularteams_list regularteams_info/ );
     
-TODO: {
-    todo_skip 'not implemented', '2';
+my $wot = WG::API::WoT::Regularteams->new( { application_id => 'demo' } );
+ok( ! $wot->regularteams_list( account_id => 1 ), 'get regular teams list' );
+ok( ! $wot->status, 'get regular teams list' );
+ok( $wot->regularteams_list(), 'get regular teams list' );
+ok( $wot->status eq 'ok', 'get regular teams list' );
 
-    my $wot = WG::API::WoT::Regularteams->new( { application_id => 'demo' } );
-    ok( $wot->regularteams_list(), 'get regular teams list' );
-    ok( $wot->regularteams_info(), 'get regular teams info' );
-};
+   $wot = WG::API::WoT::Regularteams->new( { application_id => 'demo' } );
+ok( ! $wot->regularteams_info(), 'get regular teams info' );
+ok( ! $wot->regularteams_info( account_id => 1 ), 'get regular teams info' );
+ok( ! $wot->regularteams_info( { acc_id => 1 } ), 'get regular teams info' );
+ok( ! $wot->regularteams_info( { team_id => 'test' } ), 'get regular teams info' );
+ok( $wot->status eq 'error', 'get regular teams info' );
+   $wot = WG::API::WoT::Regularteams->new( { application_id => 'demo', debug => 1 } );
+ok( $wot->regularteams_info( { team_id => 1 } ), 'get regular teams info' );
+ok( $wot->status eq 'ok', 'get regular teams info' );
 
 done_testing();

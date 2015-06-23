@@ -38,9 +38,20 @@ Perhaps a little code snippet.
 =cut
 
 sub regularteams_list {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH') {
+        $self->_get({
+                uri     => 'regularteams/list',
+                %$param,
+            });
+    } elsif ( ! $param ) {
+        $self->_get({
+                uri     => 'regularteams/list',
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 regularteams_info
@@ -50,9 +61,17 @@ sub regularteams_list {
 =cut
 
 sub regularteams_info {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'team_id' } ) {
+        $self->_get({
+                uri     => 'regularteams/info',
+                team_id  => $param->{ 'team_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head1 AUTHOR
