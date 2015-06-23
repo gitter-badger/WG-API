@@ -103,7 +103,7 @@ Return WG::API::Error object
 sub error { 
     my $self = shift;
 
-    return $self->{ 'error' } || WG::API::Error->new( @_ );
+    return $self->{ 'error' } ? $self->{ 'error' } : WG::API::Error->new( @_ );
 }
 
 sub _get {
