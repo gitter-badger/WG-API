@@ -42,7 +42,7 @@ sub account_list {
 
     if ( $param && ref $param eq 'HASH' && defined $param->{ 'search' } ) {
         my $type = defined $param->{ 'type' } ? $param->{ 'type' } : 'startswith' ;
-        my $lenght = $type eq 'exact' ? 1 : 3;
+        my $lenght = $type eq 'exact' ? 3 : 3;              # ошибка в работе WGP API, должно быть 1 : 3
         if ( length $param->{ 'search' } >= $lenght ) {
             $self->_get( {
                     uri     => 'account/list',
