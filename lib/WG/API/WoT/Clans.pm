@@ -38,9 +38,17 @@ Perhaps a little code snippet.
 =cut
 
 sub clan_provinces {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } ) {
+        $self->_get({
+                uri     => 'clan/provinces',
+                clan_id => $param->{ 'clan_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head1 AUTHOR
