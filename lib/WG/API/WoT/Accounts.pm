@@ -83,7 +83,7 @@ sub account_info {
 =cut
 
 sub account_tanks {
-    my ( $self, $param ) = shift;
+    my ( $self, $param ) = @_;
 
     if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
         $self->_get({ 
