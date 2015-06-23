@@ -38,9 +38,17 @@ Perhaps a little code snippet.
 =cut
 
 sub tanks_stats {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
+        $self->_get({
+                uri     => 'tanks/stats',
+                account_id  => $param->{ 'account_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 tanks_achievements 
@@ -50,9 +58,17 @@ sub tanks_stats {
 =cut
 
 sub tanks_achievements {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
+        $self->_get({
+                uri     => 'tanks/achievements',
+                account_id  => $param->{ 'account_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head1 AUTHOR
