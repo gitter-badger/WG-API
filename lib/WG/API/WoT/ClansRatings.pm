@@ -38,9 +38,20 @@ Perhaps a little code snippet.
 =cut
 
 sub clanratings_types {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' ) {
+        $self->_get({ 
+                uri     => 'clanratings/types',
+                %$param,
+            });
+    } elsif ( ! $param ) {
+        $self->_get({ 
+                uri     => 'clanratings/types',
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 clanratings_dates 
@@ -50,9 +61,17 @@ sub clanratings_types {
 =cut
 
 sub clanratings_dates {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'type' } ) {
+        $self->_get({ 
+                uri     => 'clanratings/dates',
+                type    => $param->{ 'type' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 clanratings_clans 
@@ -62,9 +81,18 @@ sub clanratings_dates {
 =cut
 
 sub clanratings_clans {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } && defined $param->{ 'type' } ) {
+        $self->_get({
+                uri     => 'clanratings/clans',
+                clan_id => $param->{ 'clan_id' },
+                type    => $param->{ 'type' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 clanratings_neighbors 
