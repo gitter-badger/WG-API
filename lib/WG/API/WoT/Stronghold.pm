@@ -38,9 +38,17 @@ Perhaps a little code snippet.
 =cut
 
 sub stronghold_info {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } ) {
+        $self->_get({
+                uri     => 'stronghold/info',
+                clan_id => $param->{ 'clan_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 stronghold_buildings
@@ -50,9 +58,20 @@ sub stronghold_info {
 =cut
 
 sub stronghold_buildings {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param ) {
+        $self->_get({
+                uri     => 'stronghold/buildings',
+                %$param,
+            });
+    } else {
+        $self->_get({
+                uri     => 'stronghold/buildings',
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head2 stronghold_accountstats 
@@ -62,9 +81,17 @@ sub stronghold_buildings {
 =cut
 
 sub stronghold_accountstats {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
+        $self->_get({
+                uri     => 'stronghold/accountstats',
+                clan_id => $param->{ 'account_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef;
 }
 
 =head1 AUTHOR
