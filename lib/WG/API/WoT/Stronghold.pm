@@ -60,12 +60,12 @@ sub stronghold_info {
 sub stronghold_buildings {
     my ( $self, $param ) = @_;
 
-    if ( $param ) {
+    if ( $param && ref $param eq 'HASH' ) {
         $self->_get({
                 uri     => 'stronghold/buildings',
                 %$param,
             });
-    } else {
+    } elsif ( ! $param ) {
         $self->_get({
                 uri     => 'stronghold/buildings',
             });
