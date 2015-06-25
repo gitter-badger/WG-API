@@ -102,9 +102,19 @@ sub clanratings_clans {
 =cut
 
 sub clanratings_neighbors {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'rank_field' } && defined $param->{ 'type' } && defined $param->{ 'clan_id' } ) {
+        $self->_get({
+                uri         => 'clanratings/neighbors',
+                rank_field  => $param->{ 'rank_field' },
+                clan_id     => $param->{ 'clan_id' },
+                type        => $param->{ 'type' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 clanratings_top
@@ -114,9 +124,18 @@ sub clanratings_neighbors {
 =cut
 
 sub clanratings_top {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'rank_field' } && defined $param->{ 'type' } ) {
+        $self->_get({
+                uri         => 'clanratings/top',
+                rank_field  => $param->{ 'rank_field' },
+                type        => $param->{ 'type' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head1 AUTHOR

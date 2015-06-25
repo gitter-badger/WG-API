@@ -43,11 +43,30 @@ ok( $wot->status eq 'error', 'get clan ratings clans' );
 ok( $wot->clanratings_clans( { clan_id => 1, type => 1 } ), 'get clan ratings clans' );
 ok( $wot->status eq 'ok', 'get clan ratings clans' );
 
-TODO: {
-    todo_skip 'not implemented', '5';
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( ! $wot->clanratings_neighbors(), 'get clan ratings neighbors' );
+ok( ! $wot->clanratings_neighbors( clan_id => 1 ), 'get clan ratings neighbors' );
+ok( ! $wot->clanratings_neighbors( { rank_field => 'test', type => 'test' } ), 'get clan ratings neighbors' );
+ok( ! $wot->status, 'get clan ratings neighbors' );
+ok( ! $wot->clanratings_neighbors( { clan_id => 'test', rank_field => 'test', type => 'test' } ), 'get clan ratings neighbors' );
+ok( $wot->status eq 'error', 'get clan ratings neighbors' );
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( $wot->clanratings_neighbors( { clan_id => '204353', rank_field => 'wins_ratio_fs', type => '1' } ), 'get clan ratings neighbors' );
+ok( $wot->status eq 'ok', 'get clan ratings neighbors' );
 
-    ok( $wot->clanratings_neighbors(), 'get clan ratings neighbors' );
-    ok( $wot->clanratings_top(), 'get clan ratings top' );
-};
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( ! $wot->clanratings_top(), 'get clan ratings top' );
+ok( ! $wot->clanratings_top( rank_field => 1, type => 1 ), 'get clan ratings top' );
+ok( ! $wot->clanratings_top( { rank_field => 1 } ), 'get clan ratings top' );
+ok( ! $wot->clanratings_top( { type => 1 } ), 'get clan ratings top' );
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( ! $wot->clanratings_top( { rank_field => 'test', type => 1 } ), 'get clan ratings top' );
+ok( $wot->status eq 'error', 'get clan ratings top' );
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( ! $wot->clanratings_top( { rank_field => 1, type => 'test' } ), 'get clan ratings top' );
+ok( $wot->status eq 'error', 'get clan ratings top' );
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( $wot->clanratings_top( { rank_field => 'wins_ratio_fs', type => 1 } ), 'get clan ratings top' );
+ok( $wot->status eq 'ok', 'get clan ratings top' );
 
 done_testing();
