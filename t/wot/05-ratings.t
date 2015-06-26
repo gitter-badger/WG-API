@@ -34,10 +34,23 @@ ok( $wot->status eq 'error', 'get ratings dates' );
 ok( $wot->ratings_dates( { type => '1' } ), 'get ratings dates' );
 ok( $wot->status eq 'ok', 'get ratings dates' );
 
-TODO: {
-    todo_skip 'not_implemented', '4';
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_accounts(), 'get ratings accounts' );
+ok( ! $wot->status, 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( account_id => '1', type => '1' ), 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( { acc_id => '1', type => '1' } ), 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( { account_id => '1', acc_id => '1' } ), 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( { account_id => '1' } ), 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( { type => '1' } ), 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( { account_id => 'test', type => '1' } ), 'get ratings accounts' );
+ok( ! $wot->ratings_accounts( { account_id => '1', type => 'test' } ), 'get ratings accounts' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( $wot->ratings_accounts( { account_id => '1', type => '1' } ), 'get ratings accounts' );
+ok( $wot->status eq 'ok', 'get ratings accounts' );
 
-    ok( $wot->ratings_accounts(), 'get ratings accounts' );
+TODO: {
+    todo_skip 'not_implemented', '2';
+
     ok( $wot->ratings_neighbors(), 'get ratings neighbors' );
     ok( $wot->ratings_top(), 'get ratings top' );
 };

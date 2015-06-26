@@ -81,9 +81,18 @@ sub ratings_dates {
 =cut
 
 sub ratings_accounts {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'type' } && defined $param->{ 'account_id' } ) {
+        $self->_get({ 
+                uri         => 'ratings/accounts',
+                account_id  => $param->{ 'account_id' },
+                type        => $param->{ 'type' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 ratings_neighbors 
