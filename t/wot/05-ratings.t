@@ -24,10 +24,19 @@ ok( $wot->status eq 'ok', 'get ratings types' );
 ok( $wot->ratings_types( { battle_type => 'default' } ), 'get ratings types' );
 ok( $wot->status eq 'ok', 'get ratings types' );
 
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_dates(), 'get ratings dates' );
+ok( ! $wot->status, 'get rating dates' );
+ok( ! $wot->ratings_dates( type => '1' ), 'get ratings dates' );
+ok( ! $wot->ratings_dates( { acc_id => '1' } ), 'get ratings dates' );
+ok( ! $wot->ratings_dates( { type => 'test' } ), 'get ratings dates' );
+ok( $wot->status eq 'error', 'get ratings dates' );
+ok( $wot->ratings_dates( { type => '1' } ), 'get ratings dates' );
+ok( $wot->status eq 'ok', 'get ratings dates' );
+
 TODO: {
     todo_skip 'not_implemented', '4';
 
-    ok( $wot->ratings_dates(), 'get ratings dates' );
     ok( $wot->ratings_accounts(), 'get ratings accounts' );
     ok( $wot->ratings_neighbors(), 'get ratings neighbors' );
     ok( $wot->ratings_top(), 'get ratings top' );
