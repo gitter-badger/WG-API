@@ -38,9 +38,20 @@ Perhaps a little code snippet.
 =cut
 
 sub ratings_types {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' ) {
+        $self->_get({ 
+                uri     => 'ratings/types',
+                %$param,
+            });
+    } elsif ( ! $param ) {
+        $self->_get({ 
+                uri     => 'ratings/types',
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 ratings_dates

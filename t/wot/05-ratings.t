@@ -6,15 +6,27 @@ use v5.014;
 use strict;
 use warnings;
 use Test::More;
+
 BEGIN: { use_ok( 'WG::API::WoT::Ratings' ) };
 
 can_ok( 'WG::API::WoT::Ratings', qw/ratings_types ratings_dates ratings_accounts ratings_neighbors ratings_top/ );
 
-TODO: {
-    todo_skip 'not_implemented', '5';
+my $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_types( battle_type => 'default' ), 'get ratings types' );
+ok( ! $wot->status, 'get ratings types' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_types( { battle_type => 'test' } ), 'get ratings types' );
+ok( $wot->status eq 'error', 'get ratings types' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( $wot->ratings_types(), 'get ratings types' );
+ok( $wot->status eq 'ok', 'get ratings types' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( $wot->ratings_types( { battle_type => 'default' } ), 'get ratings types' );
+ok( $wot->status eq 'ok', 'get ratings types' );
 
-    my $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
-    ok( $wot->ratings_types(), 'get ratings types' );
+TODO: {
+    todo_skip 'not_implemented', '4';
+
     ok( $wot->ratings_dates(), 'get ratings dates' );
     ok( $wot->ratings_accounts(), 'get ratings accounts' );
     ok( $wot->ratings_neighbors(), 'get ratings neighbors' );
