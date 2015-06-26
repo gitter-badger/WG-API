@@ -48,11 +48,23 @@ ok( ! $wot->ratings_accounts( { account_id => '1', type => 'test' } ), 'get rati
 ok( $wot->ratings_accounts( { account_id => '1', type => '1' } ), 'get ratings accounts' );
 ok( $wot->status eq 'ok', 'get ratings accounts' );
 
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_top(), 'get ratings neighbors' );
+ok( ! $wot->ratings_top( type => 1 ), 'get ratings neighbors' );
+ok( ! $wot->ratings_top( { acc_id => '1' } ), 'get ratings neighbors' );
+ok( ! $wot->ratings_top( { type => 'test', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( ! $wot->ratings_top( { type => '1', rank_field => 'test' } ), 'get ratings neighbors' );
+ok( ! $wot->ratings_top( { type_t => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( ! $wot->ratings_top( { type => '1', rnk_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings top' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( $wot->ratings_top( { type => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'ok', 'get ratings top');
+
 TODO: {
-    todo_skip 'not_implemented', '2';
+    todo_skip 'not_implemented', '1';
 
     ok( $wot->ratings_neighbors(), 'get ratings neighbors' );
-    ok( $wot->ratings_top(), 'get ratings top' );
 };
 
 done_testing();

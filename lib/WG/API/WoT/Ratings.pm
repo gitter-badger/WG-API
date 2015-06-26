@@ -114,9 +114,19 @@ sub ratings_neighbors {
 =cut
 
 sub ratings_top {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'type' } && defined $param->{ 'rank_field' } ) {
+        $self->_get({ 
+                uri         => 'ratings/top',
+                type        => $param->{ 'type' },
+                rank_field  => $param->{ 'rank_field' },
+                %$param,
+            });
+
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head1 AUTHOR
