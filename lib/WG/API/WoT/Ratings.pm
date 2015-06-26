@@ -102,9 +102,19 @@ sub ratings_accounts {
 =cut
 
 sub ratings_neighbors {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'rank_field' } && defined $param->{ 'type' } && $param->{ 'account_id' } ) {
+        $self->_get({ 
+                uri         => 'ratings/neighborns',
+                account_id  => $param->{ 'account_id' },
+                rank_field  => $param->{ 'rank_field' },
+                type        => $param->{ 'type' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 ratings_top

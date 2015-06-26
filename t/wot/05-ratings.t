@@ -61,10 +61,37 @@ ok( $wot->status eq 'error', 'get ratings top' );
 ok( $wot->ratings_top( { type => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
 ok( $wot->status eq 'ok', 'get ratings top');
 
-TODO: {
-    todo_skip 'not_implemented', '1';
-
-    ok( $wot->ratings_neighbors(), 'get ratings neighbors' );
-};
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors(), 'get ratings neighbors' );
+ok( ! $wot->ratings_neighbors( account_id => '1', type => '1', rank_field => 'xp_amount' ), 'get ratings neighbors' );
+ok( ! $wot->ratings_neighbors( { account_id => '1', type => '1' } ), 'get ratings neighbors' );
+ok( ! $wot->ratings_neighbors( { type => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => 'test', type => 'test', rank_field => 'test' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => '1', type => 'test', rank_field => 'test' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => 'test', type => '1', rank_field => 'test' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => '1', type => '1', rank_field => 'test' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => 'test', type => 'test', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => '1', type => 'test', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+ok( ! $wot->ratings_neighbors( { account_id => 'test', type => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
+ok( $wot->status eq 'error', 'get ratings neighborns' );
+   $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
+$wot->ratings_neighbors( { account_id => '1', type => '1', rank_field => 'xp_amount' } );
+my $response = $wot->status eq 'error' ? $wot->error->code eq '404' ? '1' : '0' : '1';
+ok( $response, 'get ratings neighborns' );
 
 done_testing();
