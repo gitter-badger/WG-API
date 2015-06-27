@@ -101,10 +101,19 @@ ok( ! $wot->globalwar_accountpointshistory( access_token => 'test', map_id => '1
 ok( ! $wot->globalwar_accountpointshistory( { access_token => 'test', map_id => 'test' } ), 'get global war account points history');
 ok( ! $wot->globalwar_accountpointshistory( { access_token => 'test', map_id => '1' } ), 'get global war account points history');
 
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_accountpointsrating(), 'get global war account points rating');
+ok( ! $wot->globalwar_accountpointsrating( map_id => 1 ), 'get global war account points rating');
+ok( ! $wot->globalwar_accountpointsrating( { app_id => 1 } ), 'get global war account points rating');
+ok( ! $wot->globalwar_accountpointsrating( { map_id => 'test' } ), 'get global war account points rating');
+ok( $wot->status eq 'error', 'get global war account points rating' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+$wot->globalwar_accountpointsrating( { map_id => '1' } );
+ok( $wot->status eq 'ok', 'get global war account points rating' );
+
 TODO: {
     todo_skip 'not implemented', '12';
 
-    ok( $wot->globalwar_accountpointsrating(), 'get global war account points rating');
     ok( $wot->globalwar_clanpoints(), 'get global war clan points');
     ok( $wot->globalwar_clanpointshistory(), 'get global war clan points hystory');
     ok( $wot->globalwar_clanpointsrating(), 'get global war clan points rating');
