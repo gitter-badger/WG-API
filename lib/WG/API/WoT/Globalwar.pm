@@ -269,6 +269,14 @@ sub globalwar_clanpointsrating {
 sub globalwar_clanprovinces {
     my ( $self, $param ) = @_;
 
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } ) {
+        $self->_get({ 
+                uri     => 'globalwar/clanprovinces',
+                map_id  => $param->{ 'clan_id' },
+                %$param,
+            });
+    }
+
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 

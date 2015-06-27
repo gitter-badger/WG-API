@@ -153,10 +153,13 @@ ok( $wot->status eq 'error', 'get global war clan points rating' );
 $wot->globalwar_clanpointsrating( { map_id => '1' } );
 ok( $wot->status eq 'ok', 'get global war clan points rating' );
 
-TODO: {
-    todo_skip 'not implemented', '12';
-
-    ok( $wot->globalwar_clanprovinces(), 'get global war clan provinces');
-};
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_clanprovinces(), 'get global war clan provinces');
+ok( ! $wot->globalwar_clanprovinces( clan_id => '1' ), 'get global war clan provinces');
+ok( ! $wot->globalwar_clanprovinces( { clan_id => 'test' } ), 'get global war clan provinces');
+ok( $wot->status eq 'error', 'get wot global war clan provinces' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+$wot->globalwar_clanprovinces( { clan_id => '1' } );
+ok( $wot->status eq 'ok', 'get wot global war clan provinces' );
 
 done_testing();
