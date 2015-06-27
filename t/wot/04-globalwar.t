@@ -77,10 +77,26 @@ ok( $wot->status eq 'error', 'get global war battles' );
 ok( $wot->globalwar_battles( { map_id => 1, clan_id => 1 } ), 'get global war battles');
 ok( $wot->status eq 'ok', 'get global war battles' );
 
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_accountpoints(), 'get global war account pounts');
+ok( ! $wot->globalwar_accountpoints( account_id => 1, map_id => 1 ), 'get global war account pounts');
+ok( ! $wot->globalwar_accountpoints( { acc_id => 1, map_id => 1 } ), 'get global war account pounts');
+ok( ! $wot->globalwar_accountpoints( { account_id => 1, app_id => 1 } ), 'get global war account pounts');
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_accountpoints( { account_id => 'test', map_id => 'test' } ), 'get global war account pounts');
+ok( $wot->status eq 'error', 'get global war account points' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_accountpoints( { account_id => '1', map_id => 'test' } ), 'get global war account pounts');
+ok( $wot->status eq 'error', 'get global war account points' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_accountpoints( { account_id => 'test', map_id => '1' } ), 'get global war account pounts');
+ok( $wot->status eq 'error', 'get global war account points' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( $wot->globalwar_accountpoints( { account_id => 1, map_id => 1 } ), 'get global war account pounts');
+
 TODO: {
     todo_skip 'not implemented', '12';
 
-    ok( $wot->globalwar_accountpoints(), 'get global war account pounts');
     ok( $wot->globalwar_accountpointshistory(), 'get global war account points hystory');
     ok( $wot->globalwar_accountpointsrating(), 'get global war account points rating');
     ok( $wot->globalwar_clanpoints(), 'get global war clan points');

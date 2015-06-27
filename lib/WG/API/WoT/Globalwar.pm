@@ -146,6 +146,14 @@ sub globalwar_battles {
 sub globalwar_accountpoints {
     my ( $self, $param ) = @_;
 
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } && defined $param->{ 'map_id' } ) {
+        $self->_get({ 
+                uri         => 'globalwar/accountpoints',
+                account_id  => $param->{ 'account_id' },
+                map_id      => $param->{ 'map_id' },
+                %$param,
+            });
+    }
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 
