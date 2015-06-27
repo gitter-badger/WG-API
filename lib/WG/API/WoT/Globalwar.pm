@@ -60,6 +60,17 @@ sub globalwar_clans{
 sub globalwar_maps {
     my ( $self, $param ) = @_;
 
+    if ( $param && ref $param eq 'HASH' ) {
+        $self->_get({
+               uri      => 'globalwar/maps',
+               %$param,
+            });
+    } elsif ( ! $param ) {
+        $self->_get({
+               uri      => 'globalwar/maps',
+            });
+    }
+
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 
