@@ -125,6 +125,15 @@ sub globalwar_tournaments {
 sub globalwar_battles {
     my ( $self, $param ) = @_;
 
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'clan_id' } ) {
+        $self->_get({ 
+                uri         => 'globalwar/battles',
+                map_id      => $param->{ 'map_id' },
+                clan_id => $param->{ 'clan_id' },
+                %$param,
+            });
+    }
+
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 
