@@ -7,6 +7,7 @@ use WG::API::Error;
 use WG::API::Data;
 use LWP;
 use JSON;
+use Data::Dumper;
 
 =head1 NAME
 
