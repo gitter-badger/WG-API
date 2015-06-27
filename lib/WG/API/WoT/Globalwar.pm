@@ -4,6 +4,7 @@ use v5.014;
 use strict;
 use warnings;
 use base qw/WG::API::WoT/;
+use Data::Dumper;
 
 =head1 NAME
 
@@ -102,6 +103,15 @@ sub globalwar_provinces {
 
 sub globalwar_tournaments {
     my ( $self, $param ) = @_;
+
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'province_id' } ) {
+        $self->_get({ 
+                uri         => 'globalwar/tournaments',
+                map_id      => $param->{ 'map_id' },
+                province_id => $param->{ 'province_id' },
+                %$param,
+            });
+    }
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }

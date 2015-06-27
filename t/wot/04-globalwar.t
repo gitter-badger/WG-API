@@ -44,10 +44,26 @@ ok( $wot->status eq 'error', 'get global war provinces' );
 ok( $wot->globalwar_provinces( { map_id => '1' } ), 'get global war provinces');
 ok( $wot->status eq 'ok', 'get global war provinces' );
 
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_tournaments(), 'get global war tournaments');
+ok( ! $wot->globalwar_tournaments( map_id => '1', province_id => 'YU_08' ), 'get global war tournaments');
+ok( ! $wot->globalwar_tournaments( { app_id => '1', province_id => 'YU_08' } ), 'get global war tournaments');
+ok( ! $wot->globalwar_tournaments( { map_id => '1', app_id => 'YU_08' } ), 'get global war tournaments');
+ok( ! $wot->globalwar_tournaments( { map_id => 'test', province_id => 'test' } ), 'get global war tournaments');
+ok( $wot->status eq 'error', 'get global war tournaments' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_tournaments( { map_id => 'test', province_id => 'YU_08' } ), 'get global war tournaments');
+ok( $wot->status eq 'error', 'get global war tournaments' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+$wot->globalwar_tournaments( { map_id => '1', province_id => 'test' } );
+ok( $wot->status eq 'ok', 'get global war tournaments' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+$wot->globalwar_tournaments( { map_id => '1', province_id => 'YU_08' } );
+ok( $wot->status eq 'ok', 'get global war tournaments' );
+
 TODO: {
     todo_skip 'not implemented', '12';
 
-    ok( $wot->globalwar_tournaments(), 'get global war tournaments');
     ok( $wot->globalwar_battles(), 'get global war battles');
     ok( $wot->globalwar_accountpoints(), 'get global war account pounts');
     ok( $wot->globalwar_accountpointshistory(), 'get global war account points hystory');
