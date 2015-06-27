@@ -207,6 +207,15 @@ sub globalwar_accountpointsrating {
 sub globalwar_clanpoints {
     my ( $self, $param ) = @_;
 
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'clan_id' } ) {
+        $self->_get({ 
+                uri         => 'globalwar/clanpoints',
+                map_id      => $param->{ 'map_id' },
+                clan_id     => $param->{ 'clan_id' },
+                %$param,
+            });
+    }
+
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 
