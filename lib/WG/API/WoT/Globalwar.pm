@@ -38,9 +38,17 @@ Perhaps a little code snippet.
 =cut 
 
 sub globalwar_clans{
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } ) {
+        $self->_get({ 
+                uri     => 'globalwar/clans',
+                map_id  => $param->{ 'map_id' },
+                %$param,
+            });
+    }
+
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_maps 
@@ -50,9 +58,9 @@ sub globalwar_clans{
 =cut 
 
 sub globalwar_maps {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_provinces 
@@ -62,9 +70,9 @@ sub globalwar_maps {
 =cut 
 
 sub globalwar_provinces {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_tournaments 
@@ -74,9 +82,9 @@ sub globalwar_provinces {
 =cut 
 
 sub globalwar_tournaments {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_battles 
@@ -86,9 +94,9 @@ sub globalwar_tournaments {
 =cut 
 
 sub globalwar_battles {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_accountpoints 
@@ -98,9 +106,9 @@ sub globalwar_battles {
 =cut 
 
 sub globalwar_accountpoints {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_accountpointshistory 
@@ -110,9 +118,9 @@ sub globalwar_accountpoints {
 =cut 
 
 sub globalwar_accountpointshistory {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_accountpointsrating 
@@ -122,9 +130,9 @@ sub globalwar_accountpointshistory {
 =cut 
 
 sub globalwar_accountpointsrating {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_clanpoints 
@@ -134,9 +142,9 @@ sub globalwar_accountpointsrating {
 =cut 
 
 sub globalwar_clanpoints {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_clanpointshistory 
@@ -146,9 +154,9 @@ sub globalwar_clanpoints {
 =cut 
 
 sub globalwar_clanpointshistory {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_clanpointsrating 
@@ -158,9 +166,9 @@ sub globalwar_clanpointshistory {
 =cut 
 
 sub globalwar_clanpointsrating {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 =head2 globalwar_clanprovinces
@@ -170,9 +178,9 @@ sub globalwar_clanpointsrating {
 =cut 
 
 sub globalwar_clanprovinces {
-    my $self = shift;
+    my ( $self, $param ) = @_;
 
-    return;
+    return $self->status eq 'ok' ? $self->response : undef ;
 }
 
 

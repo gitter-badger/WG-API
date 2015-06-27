@@ -114,7 +114,7 @@ sub _get {
             $param->{ 'uri' },
             $self->{ 'application_id' },
     ;
-    for ( qw/access_token account_id fields language expires_at search limit clan_id page_no game type rank_field team_id battle_type/ ) {
+    for ( qw/access_token account_id fields language expires_at search limit clan_id page_no game type rank_field team_id battle_type map_id/ ) {
         $url .= sprintf "&%s=%s", $_, $param->{ $_ } if $param->{ $_ }; 
     }
 

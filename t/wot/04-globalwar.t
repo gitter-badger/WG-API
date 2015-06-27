@@ -13,6 +13,16 @@ can_ok( 'WG::API::WoT::Globalwar', qw/
     globalwar_accountpoints globalwar_accountpointshistory globalwar_accountpointsrating 
     globalwar_clanpoints globalwar_clanpointshistory globalwar_clanpointsrating globalwar_clanprovinces/ );
 
+my $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_clans(), 'get global war clans');
+ok( ! $wot->globalwar_clans( map_id => 1 ), 'get global war clans');
+ok( ! $wot->globalwar_clans( { app_id => 1 } ), 'get global war clans');
+ok( ! $wot->globalwar_clans( { map_id => 'test' } ), 'get global war clans');
+ok( $wot->status eq 'error', 'get global war clans' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( $wot->globalwar_clans( { map_id => '1' } ), 'get global war clans');
+ok( $wot->status eq 'ok', 'get global war clans' );
+
 TODO: {
     todo_skip 'not implemented', '12';
 

@@ -51,6 +51,9 @@ ok( ! $wot->status, 'get clan ratings neighbors' );
 ok( ! $wot->clanratings_neighbors( { clan_id => 'test', rank_field => 'test', type => 'test' } ), 'get clan ratings neighbors' );
 ok( $wot->status eq 'error', 'get clan ratings neighbors' );
    $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
+ok( ! $wot->clanratings_neighbors( { clan_id => 'test' } ), 'get clan ratings neighbors' );
+ok( ! $wot->clanratings_neighbors( { clan_id => '1', rank_field => 'test' } ), 'get clan ratings neighbors' );
+   $wot = WG::API::WoT::ClansRatings->new( { application_id => 'demo' } );
 ok( $wot->clanratings_neighbors( { clan_id => '204353', rank_field => 'wins_ratio_fs', type => '1' } ), 'get clan ratings neighbors' );
 ok( $wot->status eq 'ok', 'get clan ratings neighbors' );
 
