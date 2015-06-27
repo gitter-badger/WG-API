@@ -83,6 +83,14 @@ sub globalwar_maps {
 sub globalwar_provinces {
     my ( $self, $param ) = @_;
 
+    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } ) {
+        $self->_get({ 
+                uri     => 'globalwar/provinces',
+                map_id  => $param->{ 'map_id' },
+                %$param,
+            });
+    }
+
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 

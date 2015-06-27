@@ -34,10 +34,19 @@ ok( $wot->status eq 'ok', 'get global war maps' );
 ok( $wot->globalwar_maps(), 'get global war maps');
 ok( $wot->status eq 'ok', 'get global war maps' );
 
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( ! $wot->globalwar_provinces(), 'get global war provinces');
+ok( ! $wot->globalwar_provinces( map_id => 1 ), 'get global war provinces');
+ok( ! $wot->globalwar_provinces( { app_id => 1 } ), 'get global war provinces');
+ok( ! $wot->globalwar_provinces( { map_id => 'test' } ), 'get global war provinces');
+ok( $wot->status eq 'error', 'get global war provinces' );
+   $wot = WG::API::WoT::Globalwar->new( { application_id => 'demo' } );
+ok( $wot->globalwar_provinces( { map_id => '1' } ), 'get global war provinces');
+ok( $wot->status eq 'ok', 'get global war provinces' );
+
 TODO: {
     todo_skip 'not implemented', '12';
 
-    ok( $wot->globalwar_provinces(), 'get global war provinces');
     ok( $wot->globalwar_tournaments(), 'get global war tournaments');
     ok( $wot->globalwar_battles(), 'get global war battles');
     ok( $wot->globalwar_accountpoints(), 'get global war account pounts');
