@@ -24,24 +24,14 @@ ok( $wg->new( {
             debug           => '1',
         } ),                                         'create class with all params from ref' );
 ok( ! WG::API->new( { app_id => $app_id } ),              'create object without application_id');
-ok( ! $wg->_get( { 
-            api_uri => 'http://www.ru/',
-            uri     => 'test',
-        } ), 'check api_uri params' );
+# $wg->_get( uri, params, passed_params );
+ok( ! $wg->_get( undef, ['language'], { language => 'ru' } ),       'send _get request' );
+ok( ! $wg->_get( 'test', undef, { language => 'ru' } ),             'send _get request' );
+ok( ! $wg->_get( 'test', ['language'], undef ),                     'send _get request' );
 
-ok( ! $wg->_get( { 
-            api     => 'http://www.ru/',
-            uri     => 'test',
-        } ), 'check api_uri params' );
-
-ok( ! $wg->_post( { 
-            api_uri => 'http://www.ru/',
-            uri     => 'test',
-        } ), 'check api_uri params' );
-
-ok( ! $wg->_post( { 
-            api     => 'http://www.ru/',
-            uri     => 'test',
-        } ), 'check api_uri params' );
+# $wg->_post( uri, params, passed_params );
+ok( ! $wg->_post( undef, ['language'], { language => 'ru' } ),      'send _post request' );
+ok( ! $wg->_post( 'test', undef, { language => 'ru' } ),            'send _post request' );
+ok( ! $wg->_post( 'test', ['language'], undef ),                    'send _post request' );
 
 done_testing();
