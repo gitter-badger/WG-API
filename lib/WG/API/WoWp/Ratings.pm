@@ -38,18 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub ratings_types {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' ) {
-        $self->_get( {
-                uri     => 'ratings/types',
-                %$param,
-            } );
-    } elsif ( ! $param ) {
-        $self->_get( {
-                uri     => 'ratings/types',
-            } );
-    }
+    $self->_request( 'get', 'ratings/types', ['language', 'fields'], undef, $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -61,15 +52,9 @@ sub ratings_types {
 =cut
 
 sub ratings_accounts {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    return unless $param && ref $param eq 'HASH';
-    warn '!!!' && return unless defined $param->{ 'account_id' } && defined $param->{ 'type' };
-
-    $self->_get( { 
-        uri     => 'ratings/accounts',
-        %$param,
-    } );
+    $self->_request( 'get', 'ratings/accounts', ['language', 'fields', 'type', 'date', 'account_id'], ['type', 'account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -81,15 +66,9 @@ sub ratings_accounts {
 =cut
 
 sub ratings_neighbors {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    return unless $param && ref $param eq 'HASH';
-    return unless defined $param->{ 'account_id' } && defined $param->{ 'type' } && defined $param->{ 'rank_field' };
-
-    $self->_get( { 
-        uri     => 'ratings/neighbors',
-        %$param,
-    } );
+    $self->_request( 'get', 'ratings/neighbors', ['language', 'fields', 'type', 'date', 'account_id', 'rank_field', 'limit'], ['type', 'account_id', 'rank_field'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -101,15 +80,9 @@ sub ratings_neighbors {
 =cut
 
 sub ratings_top {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    return unless $param && ref $param eq 'HASH';
-    return unless defined $param->{ 'type' } && defined $param->{ 'rank_field' };
-
-    $self->_get( { 
-        uri     => 'ratings/top',
-        %$param,
-    } );
+    $self->_request( 'get', 'ratings/top', ['language', 'fields', 'type', 'date', 'rank_field', 'limit'], ['type', 'rank_field'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -121,15 +94,9 @@ sub ratings_top {
 =cut
 
 sub ratings_dates {
-    my ( $self, $param ) = @_;
-
-    return unless $param && ref $param eq 'HASH';
-    return unless defined $param->{ 'type' };
-
-    $self->_get( { 
-        uri     => 'ratings/dates',
-        %$param,
-    } );
+    my $self = shift;
+    
+    $self->_request( 'get', 'ratings/dates', ['language', 'fields', 'type', 'account_id'], ['type'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }

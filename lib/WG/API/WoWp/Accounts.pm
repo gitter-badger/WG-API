@@ -38,14 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub account_list {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'search' } && length $param->{ 'search' } >= 3 ) {
-            $self->_get( {
-                uri     => 'account/list',
-                %$param,
-            } );
-    }
+    $self->_request( 'get', 'account/list', ['language', 'fields', 'type', 'search', 'limit'], ['search'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -57,14 +52,9 @@ sub account_list {
 =cut
 
 sub account_info {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && $param->{ 'account_id' } ) {
-        $self->_get( {
-                uri     => 'account/info',
-                %$param,
-            } );
-    }
+    $self->_request( 'get', 'account/info', ['language', 'fields', 'access_token', 'account_id'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -76,14 +66,9 @@ sub account_info {
 =cut
 
 sub account_planes {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && $param->{ 'account_id' } ) {
-        $self->_get( {
-                uri     => 'account/planes',
-                %$param,
-            } );
-    }
+    $self->_request( 'get', 'account/planes', ['language', 'fields', 'access_token', 'account_id'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
