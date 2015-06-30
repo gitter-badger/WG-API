@@ -188,10 +188,20 @@ sub _parse {
                 raw     => Dumper $response,
             },
         };
+    } elsif ( ! $response->{ 'status' } ) {
+        $response = {
+            status => 'error',
+            error  => {
+                code    => '998',
+                message => 'unknown status',
+                field   => 'xxx',
+                value   => 'xxx',
+                raw     => Dumper $response,
+            },
+        };
     }
 
     $self->{ 'status' } = $response->{ 'status' };
-    delete $self->{ 'error' };
     delete $self->{ 'response' };
 
     if ( $self->status eq 'error' ) {
@@ -199,6 +209,7 @@ sub _parse {
             $response->{ 'error' },
         );
     } else {
+        $self->{ 'error' }  = '';
         $self->{ 'meta' } = $response->{ 'meta' };
 
         if ( ref $response->{ 'data' } eq 'ARRAY' ) {
