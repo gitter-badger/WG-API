@@ -56,7 +56,7 @@ ok( ! $wot->ratings_top( { type => 'test', rank_field => 'xp_amount' } ), 'get r
 ok( ! $wot->ratings_top( { type => '1', rank_field => 'test' } ), 'get ratings neighbors' );
 ok( ! $wot->ratings_top( { type_t => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
 ok( ! $wot->ratings_top( { type => '1', rnk_field => 'xp_amount' } ), 'get ratings neighbors' );
-ok( $wot->status eq 'error', 'get ratings top' );
+ok( ! $wot->status, 'get ratings top' );
    $wot = WG::API::WoT::Ratings->new( { application_id => 'demo' } );
 ok( $wot->ratings_top( { type => '1', rank_field => 'xp_amount' } ), 'get ratings neighbors' );
 ok( $wot->status eq 'ok', 'get ratings top');

@@ -38,15 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub stronghold_info {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } ) {
-        $self->_get({
-                uri     => 'stronghold/info',
-                clan_id => $param->{ 'clan_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'stronghold/info', ['language', 'fields', 'access_token', 'clan_id'], ['clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -58,18 +52,9 @@ sub stronghold_info {
 =cut
 
 sub stronghold_buildings {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' ) {
-        $self->_get({
-                uri     => 'stronghold/buildings',
-                %$param,
-            });
-    } elsif ( ! $param ) {
-        $self->_get({
-                uri     => 'stronghold/buildings',
-            });
-    }
+    $self->_request( 'get', 'stronghold/buildings', ['language', 'fields'], undef, $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -81,15 +66,9 @@ sub stronghold_buildings {
 =cut
 
 sub stronghold_accountstats {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
-        $self->_get({
-                uri     => 'stronghold/accountstats',
-                clan_id => $param->{ 'account_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'stronghold/accountstats', ['language', 'fields', 'access_token', 'account_id'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }

@@ -38,20 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub account_list {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'search' } ) {
-        my $type = defined $param->{ 'type' } ? $param->{ 'type' } : 'startswith' ;
-        my $lenght = $type eq 'exact' ? 3 : 3;              # ошибка в работе WGP API, должно быть 1 : 3
-        if ( length $param->{ 'search' } >= $lenght ) {
-            $self->_get( {
-                    uri     => 'account/list',
-                    search  => $param->{ 'search' },
-                    type    => $type,
-                    %$param,
-                } );
-        }
-    }
+    $self->_request( 'get', 'account/list', ['language', 'fields', 'type', 'search', 'limit' ], ['search'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -63,15 +52,9 @@ sub account_list {
 =cut
 
 sub account_info {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
-        $self->_get({ 
-                uri         => 'account/info',
-                account_id  => $param->{ 'account_id' },
-                %$param,
-            } );
-    }
+    $self->_request( 'get', 'account/info', ['language', 'fields', 'access_token', 'extra', 'account_id'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -83,15 +66,9 @@ sub account_info {
 =cut
 
 sub account_tanks {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
-        $self->_get({ 
-                uri     => 'account/tanks',
-                account_id  => $param->{ 'account_id' },
-                %$param,
-            } );
-    }
+    $self->_request( 'get', 'account/tanks', ['language', 'fields', 'access_token', 'account_id', 'tank_id'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -103,15 +80,9 @@ sub account_tanks {
 =cut
 
 sub account_achievements {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
-        $self->_get({ 
-                uri     => 'account/achievements',
-                account_id  => $param->{ 'account_id' },
-                %$param,
-            } );
-    }
+    $self->_request( 'get', 'account/achievements', ['language', 'fields', 'account_id'], ['account_id'], $_[0] );
     
     return $self->status eq 'ok' ? $self->response : undef;
 }

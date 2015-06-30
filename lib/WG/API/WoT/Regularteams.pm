@@ -38,18 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub regularteams_list {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH') {
-        $self->_get({
-                uri     => 'regularteams/list',
-                %$param,
-            });
-    } elsif ( ! $param ) {
-        $self->_get({
-                uri     => 'regularteams/list',
-            });
-    }
+    $self->_request( 'get', 'regularteams/list', ['language', 'fields', 'limit', 'page_no', 'search', 'order_by'], undef, $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -61,15 +52,9 @@ sub regularteams_list {
 =cut
 
 sub regularteams_info {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'team_id' } ) {
-        $self->_get({
-                uri     => 'regularteams/info',
-                team_id  => $param->{ 'team_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'regularteams/info', ['language', 'fields', 'team_id'], ['team_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }

@@ -38,15 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub tanks_stats {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
-        $self->_get({
-                uri     => 'tanks/stats',
-                account_id  => $param->{ 'account_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'tanks/stats', ['language', 'fields', 'access_token', 'account_id', 'tank_id', 'in_garage'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -58,15 +52,9 @@ sub tanks_stats {
 =cut
 
 sub tanks_achievements {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } ) {
-        $self->_get({
-                uri     => 'tanks/achievements',
-                account_id  => $param->{ 'account_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'tanks/achievements', ['language', 'fields', 'access_token', 'account_id', 'tank_id', 'in_garage'], ['account_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }

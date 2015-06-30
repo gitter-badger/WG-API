@@ -38,15 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub clan_provinces {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } ) {
-        $self->_get({
-                uri     => 'clan/provinces',
-                clan_id => $param->{ 'clan_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'clan/provinces', ['language', 'fields', 'access_token', 'map_id', 'clan_id'], ['clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }

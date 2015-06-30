@@ -39,15 +39,9 @@ Perhaps a little code snippet.
 =cut 
 
 sub globalwar_clans{
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } ) {
-        $self->_get({ 
-                uri     => 'globalwar/clans',
-                map_id  => $param->{ 'map_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/clans', ['language', 'fields', 'map_id', 'limit', 'page_no'], ['map_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -59,18 +53,9 @@ sub globalwar_clans{
 =cut 
 
 sub globalwar_maps {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' ) {
-        $self->_get({
-               uri      => 'globalwar/maps',
-               %$param,
-            });
-    } elsif ( ! $param ) {
-        $self->_get({
-               uri      => 'globalwar/maps',
-            });
-    }
+    $self->_request( 'get', 'globalwar/maps', ['language', 'fields'], undef, $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -82,15 +67,9 @@ sub globalwar_maps {
 =cut 
 
 sub globalwar_provinces {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } ) {
-        $self->_get({ 
-                uri     => 'globalwar/provinces',
-                map_id  => $param->{ 'map_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/provinces', ['language', 'fields', 'map_id', 'province_id', 'region_id', 'status'], ['map_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -102,16 +81,9 @@ sub globalwar_provinces {
 =cut 
 
 sub globalwar_tournaments {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'province_id' } ) {
-        $self->_get({ 
-                uri         => 'globalwar/tournaments',
-                map_id      => $param->{ 'map_id' },
-                province_id => $param->{ 'province_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/tournaments', ['language', 'fields', 'map_id', 'province_id'], ['map_id', 'province_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -123,16 +95,9 @@ sub globalwar_tournaments {
 =cut 
 
 sub globalwar_battles {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'clan_id' } ) {
-        $self->_get({ 
-                uri         => 'globalwar/battles',
-                map_id      => $param->{ 'map_id' },
-                clan_id => $param->{ 'clan_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/battles', ['language', 'fields', 'access_token', 'map_id', 'clan_id'], ['map_id', 'clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -144,16 +109,10 @@ sub globalwar_battles {
 =cut 
 
 sub globalwar_accountpoints {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'account_id' } && defined $param->{ 'map_id' } ) {
-        $self->_get({ 
-                uri         => 'globalwar/accountpoints',
-                account_id  => $param->{ 'account_id' },
-                map_id      => $param->{ 'map_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/accountpoints', ['language', 'fields', 'map_id', 'account_id'], ['map_id', 'account_id'], $_[0] );
+
     return $self->status eq 'ok' ? $self->response : undef ;
 }
 
@@ -164,16 +123,9 @@ sub globalwar_accountpoints {
 =cut 
 
 sub globalwar_accountpointshistory {
-    my ( $self, $param ) = @_;
-    
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'access_token' } && defined $param->{ 'map_id' } ) {
-        $self->_get({ 
-                uri             => 'globalwar/accountpointhistory',
-                access_token    => $param->{ 'access_token' },
-                map_id          => $param->{ 'map_id' },
-                %$param,
-            });
-    }
+    my $self = shift;
+
+    $self->_request( 'get', 'globalwar/accountpointshistory', ['language', 'fields', 'access_token', 'map_id', 'since', 'until', 'page_no', 'limit'], ['access_token', 'map_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -185,15 +137,9 @@ sub globalwar_accountpointshistory {
 =cut 
 
 sub globalwar_accountpointsrating {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } ) {
-        $self->_get({ 
-                uri     => 'globalwar/accountpointsrating',
-                map_id  => $param->{ 'map_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/accountpointsrating', ['language', 'fields', 'map_id', 'page_no', 'limit'], ['map_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -205,16 +151,9 @@ sub globalwar_accountpointsrating {
 =cut 
 
 sub globalwar_clanpoints {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'clan_id' } ) {
-        $self->_get({ 
-                uri         => 'globalwar/clanpoints',
-                map_id      => $param->{ 'map_id' },
-                clan_id     => $param->{ 'clan_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/clanpoints', ['language', 'fields', 'map_id', 'clan_id'], ['map_id', 'clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -226,16 +165,9 @@ sub globalwar_clanpoints {
 =cut 
 
 sub globalwar_clanpointshistory {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } && defined $param->{ 'clan_id' } ) {
-        $self->_get({ 
-                uri         => 'globalwar/clanpointshistory',
-                map_id      => $param->{ 'map_id' },
-                clan_id     => $param->{ 'clan_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/clanpointshistory', ['language', 'fields', 'map_id', 'clan_id', 'since', 'until', 'page_no', 'limit'], ['map_id', 'clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -247,15 +179,9 @@ sub globalwar_clanpointshistory {
 =cut 
 
 sub globalwar_clanpointsrating {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'map_id' } ) {
-        $self->_get({ 
-                uri     => 'globalwar/clanpointsrating',
-                map_id  => $param->{ 'map_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/clanpointsrating', ['language', 'fields', 'map_id', 'page_no', 'limit'], ['map_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -267,15 +193,9 @@ sub globalwar_clanpointsrating {
 =cut 
 
 sub globalwar_clanprovinces {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } ) {
-        $self->_get({ 
-                uri     => 'globalwar/clanprovinces',
-                map_id  => $param->{ 'clan_id' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'globalwar/clanprovinces', ['language', 'fields', 'clan_id'], ['clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }

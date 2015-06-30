@@ -19,10 +19,10 @@ ok( $wot->account_list( { search => '1234' } ), 'get account list with search fi
 ok( $wot->status eq 'ok', 'get status for account list with search field' );
    $wot = WG::API::WoT::Accounts->new( { application_id => 'demo' } );
 ok( ! $wot->account_list( { search => '1', type => 'startswith' } ), 'get account list');
-ok( ! $wot->status, 'get account list' );
+ok( $wot->status eq 'error', 'get account list' );
    $wot = WG::API::WoT::Accounts->new( { application_id => 'demo', debug => 1 } );
 ok( ! $wot->account_list( { search => '12', type => 'exact' } ), 'get account list with search string eq 12 and type exact');
-ok( ! $wot->status, 'get status for request account list with search string eq 12 and type exact' );
+ok( $wot->status eq 'error', 'get status for request account list with search string eq 12 and type exact' );
    $wot = WG::API::WoT::Accounts->new( { application_id => 'demo' } );
 ok( $wot->account_list( { search => '1234', type => 'exact' } ), 'get account list');
 ok( $wot->status eq 'ok', 'get account list' );

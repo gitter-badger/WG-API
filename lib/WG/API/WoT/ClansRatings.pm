@@ -38,18 +38,9 @@ Perhaps a little code snippet.
 =cut
 
 sub clanratings_types {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' ) {
-        $self->_get({ 
-                uri     => 'clanratings/types',
-                %$param,
-            });
-    } elsif ( ! $param ) {
-        $self->_get({ 
-                uri     => 'clanratings/types',
-            });
-    }
+    $self->_request( 'get', 'clanratings/types', ['language', 'fields'], undef, $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -61,15 +52,9 @@ sub clanratings_types {
 =cut
 
 sub clanratings_dates {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'type' } ) {
-        $self->_get({ 
-                uri     => 'clanratings/dates',
-                type    => $param->{ 'type' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'clanratings/dates', ['language', 'fields', 'type', 'clan_id'], ['type'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -81,16 +66,9 @@ sub clanratings_dates {
 =cut
 
 sub clanratings_clans {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'clan_id' } && defined $param->{ 'type' } ) {
-        $self->_get({
-                uri     => 'clanratings/clans',
-                clan_id => $param->{ 'clan_id' },
-                type    => $param->{ 'type' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'clanratings/clans', ['language', 'fields', 'type', 'date', 'clan_id'], ['clan_id'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -102,17 +80,9 @@ sub clanratings_clans {
 =cut
 
 sub clanratings_neighbors {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'rank_field' } && defined $param->{ 'type' } && defined $param->{ 'clan_id' } ) {
-        $self->_get({
-                uri         => 'clanratings/neighbors',
-                rank_field  => $param->{ 'rank_field' },
-                clan_id     => $param->{ 'clan_id' },
-                type        => $param->{ 'type' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'clanratings/neighbors', ['language', 'fields', 'type', 'date', 'clan_id', 'rank_field', 'limit'], ['type', 'clan_id', 'rank_field'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
@@ -124,16 +94,9 @@ sub clanratings_neighbors {
 =cut
 
 sub clanratings_top {
-    my ( $self, $param ) = @_;
+    my $self = shift;
 
-    if ( $param && ref $param eq 'HASH' && defined $param->{ 'rank_field' } && defined $param->{ 'type' } ) {
-        $self->_get({
-                uri         => 'clanratings/top',
-                rank_field  => $param->{ 'rank_field' },
-                type        => $param->{ 'type' },
-                %$param,
-            });
-    }
+    $self->_request( 'get', 'clanratings/top', ['language', 'fields', 'type', 'date', 'rank_field', 'limit', 'page_no'], ['type', 'rank_field'], $_[0] );
 
     return $self->status eq 'ok' ? $self->response : undef ;
 }
