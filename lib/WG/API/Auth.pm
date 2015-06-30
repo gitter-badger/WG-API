@@ -4,8 +4,6 @@ use 5.014;
 use strict;
 use warnings;
 use base qw/WG::API/;
-use Readonly;
-use LWP;
  
 =head1 NAME
 
@@ -18,8 +16,6 @@ Version 0.01
 =cut
 
 our $VERSION = '0.01';
-
-Readonly::Scalar my $fortnight => '1209600';    #two weeks
 
 =head1 SYNOPSIS
 
@@ -41,47 +37,31 @@ Perhaps a little code snippet.
 =cut
 
 sub login { 
-    my ( $self, $params ) = @_;
+    $_[0]->_request( 'post', 'auth/login', ['expires_at', 'redirect_uri', 'display', 'nofollow'], undef, $_[1] );
 
-    if ( ! $params || ref $params eq 'HASH' ) {
-        $self->_post( {
-            api_uri     => 'api.worldoftanks.ru/wot',
-            uri         => 'auth/login', 
-            redirect_uri    => $params->{ 'redirect_uri' }, 
-            expires_at      => $params->{ 'expires_at' }    ? $params->{ 'expires_at' } : $fortnight,
-            nofollow        => $params->{ 'nofollow' } ? '1': '0',
-        } );
-
-        return $self->status eq 'ok' ? $self->response : undef;
-    }
-    return;
+    return $_[0]->status eq 'ok' ? $_[0]->response : undef;
 }  
 
 =head3 prolongate
 
 =cut
 
-sub prolongate { 
-    $_[0]->_post( { 
-            api_uri     => 'api.worldoftanks.ru/wot',
-            uri => 'auth/prolongate', 
-            access_token => $_[0]->{ 'access_token' }, 
-            expires_at => $_[1] && ref $_[1] eq 'HASH' ? $_[1]->{ 'expires_at' } : $fortnight 
-        } ) 
-}
+sub prolongate { $_[0]->_request( 'post', 'auth/prolongate', ['access_token', 'expires_at'], ['access_token'], $_[1] ) }
 
 =head3 logout
 
 =cut
 
-sub logout { 
-    $_[0]->_post( { 
-            api_uri     => 'api.worldoftanks.ru/wot',
-            uri => 'auth/logout', 
-            access_token => $_[0]->{ 'access_token' } 
-        } ) 
-}
+sub logout { $_[0]->_request( 'post', 'auth/logout', ['access_token'], ['access_token'], $_[1] ) }
 
+sub _init {
+    my $self = shift;
+
+    $self->{ 'api_uri' } = 'api.worldoftanks.ru/wot';
+    $self->SUPER::_init();
+
+    return $self;
+}
 =head1 AUTHOR
 
 Cyrill Novgorodcev, C<< <cynovg at cpan.org> >>
