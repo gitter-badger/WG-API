@@ -140,7 +140,7 @@ sub _get {
 
     my $url = sprintf 'https://%s/%s/?application_id=%s',
             $passed_params->{ 'api_uri' } ? $passed_params->{ 'api_uri' } : $self->{ 'api_uri' },
-            $uri,
+            $uri ? $uri : '',
             $self->{ 'application_id' },
     ;
     for ( @$params ) {
@@ -157,15 +157,17 @@ sub _post {
 
     my $url = sprintf 'https://%s/%s/', 
         $passed_params->{ 'api_uri' } ? $passed_params->{ 'api_uri' } : $self->{ 'api_uri' },
-        $uri;
+        $uri ? $uri : '';
 
     $passed_params->{ 'application_id' } = $self->{ 'application_id' };
 
     #remove unused fields
-    my %params;
-    @params{ keys %$passed_params } = ();
-    delete @params{ @$params };
-    delete $passed_params->{ $_ } for keys %params;
+    if ( $params && $passed_params ) {
+        my %params;
+        @params{ keys %$passed_params } = ();
+        delete @params{ @$params };
+        delete $passed_params->{ $_ } for keys %params;
+    }
 
     my $response = $self->{ 'ua' }->post( $url, $passed_params ); 
     $self->_parse( $response->is_success ? decode_json $response->decoded_content : undef );
