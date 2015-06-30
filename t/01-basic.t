@@ -8,6 +8,7 @@ use lib( './lib');
 use WG::API;
 
 use Test::More;
+use Data::Dumper;
 
 my $app_id = 'demo';
 
@@ -34,4 +35,12 @@ ok( ! $wg->_post( undef, ['language'], { language => 'ru' } ),      'send _post 
 ok( ! $wg->_post( 'test', undef, { language => 'ru' } ),            'send _post request' );
 ok( ! $wg->_post( 'test', ['language'], undef ),                    'send _post request' );
 
+# $wg->_request( method. uri, params_list, required params, passd params );
+ok ( ! $wg->_request( 'test', 'uri', ['test'], ['test'], { test => 1 } ), '_request test' );
+ok ( $wg->_request( 'get', 'uri', ['test'], ['test'], { test => 1 } ), '_prepare test' );
+ok ( ! $wg->_request( 'get', '', ['test'], ['test'], { api_uri => 'test.worldoftanks.ru/wot' } ), '_prepare test' );
+ok ( $wg->_request( 'get', '', ['test'], undef, { api_uri => 'test.worldoftanks.ru/wot' } ), '_prepare test' );
+ok ( $wg->_request( 'get', '', undef, undef, { api_uri => 'test.worldoftanks.ru/wot' } ), '_prepare test' );
+ok ( ! $wg->_request( 'get', '', undef, ['test'], { api_uri => 'test.worldoftanks.ru/wot' } ), '_prepare test' );
+ok ( $wg->_request( 'post', '', ['test'], undef, { api_uri => 'api.worldoftanks.ru/wot' } ), '_prepare test' );
 done_testing();
