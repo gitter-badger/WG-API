@@ -159,8 +159,6 @@ sub _post {
         $passed_params->{ 'api_uri' } ? $passed_params->{ 'api_uri' } : $self->{ 'api_uri' },
         $uri ? $uri : '';
 
-    $passed_params->{ 'application_id' } = $self->{ 'application_id' };
-
     #remove unused fields
     if ( $params && $passed_params ) {
         my %params;
@@ -168,6 +166,8 @@ sub _post {
         delete @params{ @$params };
         delete $passed_params->{ $_ } for keys %params;
     }
+
+    $passed_params->{ 'application_id' } = $self->{ 'application_id' };
 
     my $response = $self->{ 'ua' }->post( $url, $passed_params ); 
     $self->_parse( $response->is_success ? decode_json $response->decoded_content : undef );
