@@ -50,18 +50,7 @@ Fetch clans list
 sub clans_list {
     my ( $self, $params ) = @_;
 
-    if ( $params && ref $params eq 'HASH' ) {
-        $self->_get( { 
-            uri => 'clans/list',
-            %$params,
-        } );
-    } elsif ( ! $params ) {
-        $self->_get( { 
-            uri => 'clans/list'
-        } );
-    } else {
-        return;
-    }
+    $self->_request( 'get', 'clans/list', ['language', 'fields', 'search', 'orded_by', 'limit', 'page_no' ], undef, $params );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -75,12 +64,7 @@ Fetch clan info
 sub clans_info {
     my ( $self, $params ) = @_;
 
-    return unless $params && ref $params eq 'HASH' && defined $params->{ 'clan_id' };
-
-    $self->_get( { 
-            uri => 'clans/info',
-            %$params,
-        } );
+    $self->_request( 'get', 'clans/info', ['language', 'fields', 'access_token', 'clan_id'], ['clan_id'], $params );
 
     return $self->status eq 'ok' ? $self->response : undef; 
 }
@@ -94,12 +78,7 @@ Fetch info about clan members
 sub clans_membersinfo {
     my ( $self, $params ) = @_;
 
-    return unless $params && ref $params eq 'HASH' && defined $params->{ 'account_id' };
-
-    $self->_get( { 
-            uri => 'clans/membersinfo',
-            %$params,
-        } );
+    $self->_request( 'get', 'clans/membersinfo', ['language', 'fields', 'account_id'], ['account_id'], $params );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
@@ -113,18 +92,7 @@ Fetch clans glossary
 sub clans_glossary {
     my ( $self, $params ) = @_;
 
-    if ( $params && ref $params eq 'HASH' && $params->{ 'fields' } ) {
-        $self->_get( { 
-            uri => 'clans/glossary',
-            %$params,
-        } );
-    } elsif ( ! $params ) {
-        $self->_get( { 
-            uri => 'clans/glossary'
-        } );
-    } else {
-        return;
-    }
+    $self->_request( 'get', 'clans/glossary', ['language', 'fields'], undef, $params );
 
     return $self->status eq 'ok' ? $self->response : undef;
 }
