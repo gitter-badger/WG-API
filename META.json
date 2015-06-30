@@ -1,0 +1,73 @@
+{
+   "abstract" : "The great new WG::API!",
+   "author" : [
+      "Cyrill Novgorodcev, C<< <cynovg at cpan.org> >>"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Minilla/v2.4.1, CPAN::Meta::Converter version 2.142690",
+   "license" : [
+      "artistic_1"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "WG-API",
+   "no_index" : {
+      "directory" : [
+         "t",
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples",
+         "author",
+         "builder"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::CPAN::Meta" : "0",
+            "Test::MinimumVersion::Fast" : "0.04",
+            "Test::PAUSE::Permissions" : "0.04",
+            "Test::Pod" : "1.41",
+            "Test::Spellunker" : "v0.2.7"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "JSON" : "2.61",
+            "LWP" : "6.08",
+            "Readonly" : "2",
+            "perl" : "5.014"
+         }
+      }
+   },
+   "release_status" : "unstable",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/cynovg/WG-API/issues"
+      },
+      "homepage" : "https://github.com/cynovg/WG-API",
+      "repository" : {
+         "type" : "git",
+         "url" : "git://github.com/cynovg/WG-API.git",
+         "web" : "https://github.com/cynovg/WG-API"
+      }
+   },
+   "version" : "0.01",
+   "x_contributors" : [
+      "Cyrill Novgorodcev <cynovg@gmail.com>"
+   ]
+}

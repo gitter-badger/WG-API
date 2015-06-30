@@ -1,60 +1,91 @@
-WG-API
-========
-[![Build Status](https://travis-ci.org/cynovg/WG-API.svg?branch=master)](https://travis-ci.org/cynovg/WG-API)
-[![Coverage Status](https://coveralls.io/repos/cynovg/WG-API/badge.svg?branch=master)](https://coveralls.io/r/cynovg/WG-API?branch=master)
+# NAME
 
-## Module for work with Wargaming.net Public API.
+WG::API - The great new WG::API!
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+# VERSION
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+Version 0.01
 
+# SYNOPSIS
 
-## INSTALLATION
+Quick summary of what the module does.
 
-To install this module, run the following commands:
+Perhaps a little code snippet.
 
-    perl Makefile.PL
-    make
-    make test
-    make install
+    use WG::API;
 
-## SUPPORT AND DOCUMENTATION
+    my $foo = WG::API->new();
+    ...
 
-After installing, you can find documentation for this module with the
-perldoc command.
+# METHODS
+
+## CONSTRUCTOR
+
+### new
+
+Creta new object.
+
+## INTERNAL DATA
+
+### status
+
+Return request status
+
+### response
+
+Return response
+
+### meta
+
+### error
+
+Return WG::API::Error object
+
+# AUTHOR
+
+Cyrill Novgorodcev, `<cynovg at cpan.org>`
+
+# BUGS
+
+Please report any bugs or feature requests to `bug-wg-api at rt.cpan.org`, or through
+the web interface at [http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WG-API](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WG-API).  I will be notified, and then you'll
+automatically be notified of progress on your bug as I make changes.
+
+# SUPPORT
+
+You can find documentation for this module with the perldoc command.
 
     perldoc WG::API
 
 You can also look for information at:
 
-* [RT, CPAN's request tracker](http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API)
+- RT: CPAN's request tracker (report bugs here)
 
-* [RT, Github request tracher (report bugs here)](https://github.com/cynovg/WG-API/issues)
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API](http://rt.cpan.org/NoAuth/Bugs.html?Dist=WG-API)
 
-* [AnnoCPAN, Annotated CPAN documentation](http://annocpan.org/dist/WG-API)
+- AnnoCPAN: Annotated CPAN documentation
 
-* [CPAN Ratings](http://cpanratings.perl.org/d/WG-API)
+    [http://annocpan.org/dist/WG-API](http://annocpan.org/dist/WG-API)
 
-* [Search CPAN](http://search.cpan.org/dist/WG-API/)
+- CPAN Ratings
 
+    [http://cpanratings.perl.org/d/WG-API](http://cpanratings.perl.org/d/WG-API)
 
-## LICENSE AND COPYRIGHT
+- Search CPAN
 
-Copyright (C) 2015 Cyrill Novgorodcev
+    [http://search.cpan.org/dist/WG-API/](http://search.cpan.org/dist/WG-API/)
+
+# ACKNOWLEDGEMENTS
+
+# LICENSE AND COPYRIGHT
+
+Copyright 2015 Cyrill Novgorodcev.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the the Artistic License (2.0). You may obtain a
 copy of the full license at:
 
-<http://www.perlfoundation.org/artistic_license_2_0>
+[http://www.perlfoundation.org/artistic\_license\_2\_0](http://www.perlfoundation.org/artistic_license_2_0)
 
 Any use, modification, and distribution of the Standard or Modified
 Versions is governed by this Artistic License. By using, modifying or
