@@ -40,10 +40,7 @@ Fetch info abou servers
 sub servers_info { 
     my $self = shift;
 
-    $self->_get( { 
-            uri => 'servers/info', 
-            $_[ 0 ] ? %{ $_[ 0 ] } : () 
-        } );
+    $self->_request( 'get', 'servers/info', ['language', 'fields', 'game'], undef, $_[ 0 ] ); 
     
     return $self->status eq 'ok' ? $self->response : undef;
 }
