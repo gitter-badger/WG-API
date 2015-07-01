@@ -1,0 +1,4 @@
+authority = "cpan:CYNOVG"
+license="artistic_2"
+badges = ['travis', 'coveralls']
+abstract_from="lib/WG/API.pm"
