@@ -2,7 +2,28 @@ language: perl
 perl:
   - "5.20"
   - "5.18"
+  - "dev"
+  - "blead"
+matrix:
+  include:
+    - perl: 5.18
+      env: COVERAGE=1
+  allow_failures:
+    - perl: "blead"
+sudo: false
 before_install:
-  cpanm -n Devel::Cover::Report::Coveralls
+  - git clone git://github.com/travis-perl/helpers ~/travis-perl-helpers
+  - source ~/travis-perl-helpers/init
+  - build-perl
+  - perl -V
+  - cpanm Minilla
+install:
+  - cpan-install --deps       # installs prereqs, including recommends
+  - cpan-install --coverage   # installs converage prereqs, if enabled
+  - minil install
+before_script:
+  - coverage-setup
 script:
-  perl Makefile.PL && make && cover -test -report coveralls
+  - prove -l -j$(test-jobs) $(test-files)   # parallel testing
+after_success:
+  - coverage-report
