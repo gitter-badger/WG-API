@@ -1,6 +1,8 @@
 [![Build Status](https://travis-ci.org/cynovg/WG-API.svg?branch=master)](https://travis-ci.org/cynovg/WG-API) [![Coverage Status](https://img.shields.io/coveralls/cynovg/WG-API/master.svg?style=flat)](https://coveralls.io/r/cynovg/WG-API?branch=master)
 # NAME
 
+[![Join the chat at https://gitter.im/cynovg/WG-API](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/cynovg/WG-API?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 WG::API - The great new WG::API!
 
 # VERSION
